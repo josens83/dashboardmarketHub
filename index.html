@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Market Hub - 유료 대시보드 구축 서비스 시장 분석</title>
+    <meta name="description" content="BI 및 대시보드 구축 서비스 시장을 분석하고 비교하는 전문 플랫폼" />
+
+    <!-- PWA 메타 태그 -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="DM Hub" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- 오픈 그래프 메타 태그 -->
+    <meta property="og:title" content="Dashboard Market Hub" />
+    <meta property="og:description" content="BI 및 대시보드 구축 서비스 시장을 분석하고 비교하는 전문 플랫폼" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => console.log('SW registered:', registration))
+            .catch(error => console.log('SW registration failed:', error));
+        });
+      }
+    </script>
+  </body>
+</html>
