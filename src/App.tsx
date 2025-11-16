@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { UserDataProvider } from './contexts/UserDataContext';
 import MarketOverview from './components/MarketOverview';
 import ServiceComparison from './components/ServiceComparison';
 import PricingAnalysis from './components/PricingAnalysis';
 import IndustryAnalysis from './components/IndustryAnalysis';
+import UserDashboard from './components/UserDashboard';
 import AuthModal from './components/AuthModal';
 import PricingModal from './components/PricingModal';
 import { exportToPDF } from './utils/pdfExport';
@@ -40,6 +42,7 @@ function AppContent() {
   };
 
   const menuItems = [
+    { id: 'dashboard', label: '대시보드', icon: '🏠' },
     { id: 'overview', label: '시장 개요', icon: '📊' },
     { id: 'comparison', label: '서비스 비교', icon: '🔍' },
     { id: 'pricing', label: '가격 분석', icon: '💰' },
@@ -219,6 +222,7 @@ function AppContent() {
 
       {/* 메인 컨텐츠 */}
       <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {activeSection === 'dashboard' && <UserDashboard />}
         {activeSection === 'overview' && <MarketOverview />}
         {activeSection === 'comparison' && <ServiceComparison />}
         {activeSection === 'pricing' && <PricingAnalysis />}
@@ -266,7 +270,9 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <UserDataProvider>
+        <AppContent />
+      </UserDataProvider>
     </AuthProvider>
   );
 }

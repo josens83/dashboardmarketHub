@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Search, Filter, CheckCircle2 } from 'lucide-react';
+import { Search, Filter, CheckCircle2, GitCompare } from 'lucide-react';
 import { serviceComparisons } from '../data/marketData';
 import DataExportButton from './DataExportButton';
+import ComparisonTool from './ComparisonTool';
 
 const ServiceComparison: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPricing, setSelectedPricing] = useState<string>('all');
+  const [showComparison, setShowComparison] = useState(false);
 
   const filteredServices = serviceComparisons.filter((service) => {
     const matchesSearch =
@@ -23,8 +25,19 @@ const ServiceComparison: React.FC = () => {
           <Filter className="w-8 h-8 text-primary-600" />
           <h2 className="text-3xl font-bold">주요 서비스 비교</h2>
         </div>
-        <DataExportButton dataType="services" label="서비스 데이터 내보내기" />
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowComparison(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+          >
+            <GitCompare className="w-4 h-4" />
+            <span className="hidden md:inline">비교 도구</span>
+          </button>
+          <DataExportButton dataType="services" label="데이터 내보내기" />
+        </div>
       </div>
+
+      <ComparisonTool isOpen={showComparison} onClose={() => setShowComparison(false)} />
 
       {/* 필터 및 검색 */}
       <div className="card">
