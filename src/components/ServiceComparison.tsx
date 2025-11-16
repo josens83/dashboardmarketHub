@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Filter, CheckCircle2 } from 'lucide-react';
 import { serviceComparisons } from '../data/marketData';
+import DataExportButton from './DataExportButton';
 
 const ServiceComparison: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,9 +18,12 @@ const ServiceComparison: React.FC = () => {
 
   return (
     <section className="space-y-6">
-      <div className="flex items-center gap-3 mb-6">
-        <Filter className="w-8 h-8 text-primary-600" />
-        <h2 className="text-3xl font-bold">주요 서비스 비교</h2>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <Filter className="w-8 h-8 text-primary-600" />
+          <h2 className="text-3xl font-bold">주요 서비스 비교</h2>
+        </div>
+        <DataExportButton dataType="services" label="서비스 데이터 내보내기" />
       </div>
 
       {/* 필터 및 검색 */}

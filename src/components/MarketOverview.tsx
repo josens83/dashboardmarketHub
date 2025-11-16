@@ -11,13 +11,17 @@ import {
 } from 'recharts';
 import { TrendingUp, Globe, MapPin } from 'lucide-react';
 import { marketGrowthData, marketCAGR } from '../data/marketData';
+import DataExportButton from './DataExportButton';
 
 const MarketOverview: React.FC = () => {
   return (
     <section className="space-y-6">
-      <div className="flex items-center gap-3 mb-6">
-        <TrendingUp className="w-8 h-8 text-primary-600" />
-        <h2 className="text-3xl font-bold">시장 개요</h2>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <TrendingUp className="w-8 h-8 text-primary-600" />
+          <h2 className="text-3xl font-bold">시장 개요</h2>
+        </div>
+        <DataExportButton dataType="market" label="시장 데이터 내보내기" />
       </div>
 
       {/* 주요 지표 카드 */}

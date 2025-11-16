@@ -16,6 +16,7 @@ import {
 } from 'recharts';
 import { Building2, TrendingUp, Clock, Award } from 'lucide-react';
 import { industryDemands } from '../data/marketData';
+import DataExportButton from './DataExportButton';
 
 const IndustryAnalysis: React.FC = () => {
   const [selectedIndustry, setSelectedIndustry] = useState(0);
@@ -36,9 +37,12 @@ const IndustryAnalysis: React.FC = () => {
 
   return (
     <section className="space-y-6">
-      <div className="flex items-center gap-3 mb-6">
-        <Building2 className="w-8 h-8 text-primary-600" />
-        <h2 className="text-3xl font-bold">산업별 수요 분석</h2>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <Building2 className="w-8 h-8 text-primary-600" />
+          <h2 className="text-3xl font-bold">산업별 수요 분석</h2>
+        </div>
+        <DataExportButton dataType="industry" label="산업 데이터 내보내기" />
       </div>
 
       {/* 산업별 도입률 차트 */}

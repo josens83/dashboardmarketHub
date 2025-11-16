@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun, Download, Menu, X } from 'lucide-react';
+import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown } from 'lucide-react';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import MarketOverview from './components/MarketOverview';
 import ServiceComparison from './components/ServiceComparison';
 import PricingAnalysis from './components/PricingAnalysis';
 import IndustryAnalysis from './components/IndustryAnalysis';
+import AuthModal from './components/AuthModal';
+import PricingModal from './components/PricingModal';
 import { exportToPDF } from './utils/pdfExport';
 
-function App() {
+function AppContent() {
+  const { user, isAuthenticated, logout } = useAuth();
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showPricingModal, setShowPricingModal] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   // 다크모드 초기화
   useEffect(() => {
@@ -37,7 +44,17 @@ function App() {
     { id: 'comparison', label: '서비스 비교', icon: '🔍' },
     { id: 'pricing', label: '가격 분석', icon: '💰' },
     { id: 'industry', label: '산업별 분석', icon: '🏭' },
+    { id: 'plans', label: '요금제', icon: '💎' },
   ];
+
+  const getTierBadge = (tier: string) => {
+    const badges = {
+      free: { label: '무료', color: 'bg-gray-500' },
+      premium: { label: '프리미엄', color: 'bg-yellow-500' },
+      enterprise: { label: '엔터프라이즈', color: 'bg-purple-500' },
+    };
+    return badges[tier as keyof typeof badges] || badges.free;
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
@@ -68,6 +85,59 @@ function App() {
                 <Download className="w-4 h-4" />
                 <span>PDF 내보내기</span>
               </button>
+
+              {/* 사용자 메뉴 */}
+              {isAuthenticated && user ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                  >
+                    <User className="w-5 h-5" />
+                    <span className="hidden md:inline text-sm font-semibold">{user.name}</span>
+                    <span className={`hidden md:inline text-xs px-2 py-0.5 rounded-full text-white ${getTierBadge(user.subscriptionTier).color}`}>
+                      {getTierBadge(user.subscriptionTier).label}
+                    </span>
+                  </button>
+
+                  {showUserMenu && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+                      <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                        <p className="font-semibold">{user.name}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">{user.email}</p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setShowPricingModal(true);
+                          setShowUserMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
+                      >
+                        <Crown className="w-4 h-4 text-yellow-500" />
+                        <span>요금제 관리</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setShowUserMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-red-600"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>로그아웃</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowAuthModal(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span className="hidden md:inline">로그인</span>
+                </button>
+              )}
 
               {/* 다크모드 토글 */}
               <button
@@ -153,7 +223,18 @@ function App() {
         {activeSection === 'comparison' && <ServiceComparison />}
         {activeSection === 'pricing' && <PricingAnalysis />}
         {activeSection === 'industry' && <IndustryAnalysis />}
+        {activeSection === 'plans' && (
+          <div>
+            <PricingModal isOpen={true} onClose={() => setActiveSection('overview')} />
+          </div>
+        )}
       </main>
+
+      {/* 모달들 */}
+      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
+      {activeSection !== 'plans' && (
+        <PricingModal isOpen={showPricingModal} onClose={() => setShowPricingModal(false)} />
+      )}
 
       {/* 푸터 */}
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
@@ -179,6 +260,14 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
