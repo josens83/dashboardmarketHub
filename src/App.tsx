@@ -7,8 +7,10 @@ import ServiceComparison from './components/ServiceComparison';
 import PricingAnalysis from './components/PricingAnalysis';
 import IndustryAnalysis from './components/IndustryAnalysis';
 import UserDashboard from './components/UserDashboard';
+import SavedReportsPage from './components/SavedReportsPage';
 import AuthModal from './components/AuthModal';
 import PricingModal from './components/PricingModal';
+import OnboardingTour from './components/OnboardingTour';
 import { exportToPDF } from './utils/pdfExport';
 
 function AppContent() {
@@ -19,6 +21,7 @@ function AppContent() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   // 다크모드 초기화
   useEffect(() => {
@@ -26,6 +29,12 @@ function AppContent() {
     if (savedMode === 'true') {
       setDarkMode(true);
       document.documentElement.classList.add('dark');
+    }
+
+    // 온보딩 체크
+    const onboardingCompleted = localStorage.getItem('onboardingCompleted');
+    if (!onboardingCompleted) {
+      setShowOnboarding(true);
     }
   }, []);
 
@@ -47,6 +56,7 @@ function AppContent() {
     { id: 'comparison', label: '서비스 비교', icon: '🔍' },
     { id: 'pricing', label: '가격 분석', icon: '💰' },
     { id: 'industry', label: '산업별 분석', icon: '🏭' },
+    { id: 'reports', label: '저장된 리포트', icon: '📁' },
     { id: 'plans', label: '요금제', icon: '💎' },
   ];
 
@@ -227,6 +237,7 @@ function AppContent() {
         {activeSection === 'comparison' && <ServiceComparison />}
         {activeSection === 'pricing' && <PricingAnalysis />}
         {activeSection === 'industry' && <IndustryAnalysis />}
+        {activeSection === 'reports' && <SavedReportsPage />}
         {activeSection === 'plans' && (
           <div>
             <PricingModal isOpen={true} onClose={() => setActiveSection('overview')} />
@@ -239,6 +250,9 @@ function AppContent() {
       {activeSection !== 'plans' && (
         <PricingModal isOpen={showPricingModal} onClose={() => setShowPricingModal(false)} />
       )}
+
+      {/* 온보딩 투어 */}
+      {showOnboarding && <OnboardingTour onComplete={() => setShowOnboarding(false)} />}
 
       {/* 푸터 */}
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
