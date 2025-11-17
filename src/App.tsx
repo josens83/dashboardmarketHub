@@ -21,6 +21,7 @@ import ActivityLogs from './components/ActivityLogs';
 import DataExportCenter from './components/DataExportCenter';
 import WebhookSettings from './components/WebhookSettings';
 import CustomReportBuilder from './components/CustomReportBuilder';
+import TemplateGallery from './components/TemplateGallery';
 import FAQPage from './components/FAQPage';
 import ContactPage from './components/ContactPage';
 import SettingsPage from './components/SettingsPage';
@@ -100,6 +101,7 @@ function AppContent() {
 
   const appMenuItems = [
     { id: 'dashboard', label: '대시보드', icon: '🏠', requiresAuth: true },
+    { id: 'templates', label: '템플릿', icon: '📋', requiresAuth: false },
     { id: 'overview', label: '시장 개요', icon: '📊', requiresAuth: false },
     { id: 'comparison', label: '서비스 비교', icon: '🔍', requiresAuth: false },
     { id: 'pricing', label: '가격 분석', icon: '💰', requiresAuth: false },
@@ -148,7 +150,7 @@ function AppContent() {
 
   // 랜딩 페이지는 헤더/푸터가 다름
   const isLandingPage = activeSection === 'landing';
-  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs', 'admin', 'activity', 'data', 'webhooks', 'report-builder'].includes(activeSection);
+  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs', 'admin', 'activity', 'data', 'webhooks', 'report-builder', 'templates'].includes(activeSection);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
@@ -468,6 +470,7 @@ function AppContent() {
       <main id="main-content" className={isFullPageView ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'}>
         {activeSection === 'landing' && <LandingPage onGetStarted={handleGetStarted} onViewPricing={handleViewPricing} />}
         {activeSection === 'dashboard' && <UserDashboard />}
+        {activeSection === 'templates' && <TemplateGallery />}
         {activeSection === 'overview' && <MarketOverview />}
         {activeSection === 'comparison' && <ServiceComparison />}
         {activeSection === 'pricing' && <PricingAnalysis />}
