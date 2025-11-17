@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { UserDataProvider } from './contexts/UserDataContext';
 import { ToastProvider } from './contexts/ToastContext';
 import ErrorBoundary from './components/ErrorBoundary';
+import GlobalSearch from './components/GlobalSearch';
+import NotificationCenter from './components/NotificationCenter';
 import LandingPage from './components/LandingPage';
 import MarketOverview from './components/MarketOverview';
 import ServiceComparison from './components/ServiceComparison';
@@ -11,6 +13,9 @@ import PricingAnalysis from './components/PricingAnalysis';
 import IndustryAnalysis from './components/IndustryAnalysis';
 import UserDashboard from './components/UserDashboard';
 import SavedReportsPage from './components/SavedReportsPage';
+import TeamManagement from './components/TeamManagement';
+import ReportScheduler from './components/ReportScheduler';
+import APIDocumentation from './components/APIDocumentation';
 import FAQPage from './components/FAQPage';
 import ContactPage from './components/ContactPage';
 import SettingsPage from './components/SettingsPage';
@@ -32,7 +37,10 @@ function AppContent() {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showGlobalSearch, setShowGlobalSearch] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
   const [checkoutTier, setCheckoutTier] = useState<SubscriptionTier | null>(null);
+  const [unreadNotifications] = useState(2); // 데모: 읽지 않은 알림 수
 
   // 다크모드 및 초기화
   useEffect(() => {
@@ -56,6 +64,19 @@ function AppContent() {
     }
   }, [isAuthenticated]);
 
+  // Cmd+K 또는 Ctrl+K로 전역 검색 열기
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowGlobalSearch(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // 다크모드 토글
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -67,6 +88,10 @@ function AppContent() {
   const handleExportPDF = () => {
     exportToPDF('main-content', `dashboard-report-${new Date().toISOString().split('T')[0]}.pdf`);
   };
+
+  const handleNavigate = useCallback((page: string) => {
+    setActiveSection(page);
+  }, []);
 
   const appMenuItems = [
     { id: 'dashboard', label: '대시보드', icon: '🏠', requiresAuth: true },
@@ -118,7 +143,7 @@ function AppContent() {
 
   // 랜딩 페이지는 헤더/푸터가 다름
   const isLandingPage = activeSection === 'landing';
-  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings'].includes(activeSection);
+  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs'].includes(activeSection);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
@@ -145,6 +170,31 @@ function AppContent() {
               </button>
 
               <div className="flex items-center gap-2">
+                {/* 전역 검색 버튼 */}
+                <button
+                  onClick={() => setShowGlobalSearch(true)}
+                  className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                  title="검색 (Cmd+K)"
+                >
+                  <Search className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                </button>
+
+                {/* 알림 버튼 */}
+                {isAuthenticated && (
+                  <button
+                    onClick={() => setShowNotifications(!showNotifications)}
+                    className="relative p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    title="알림"
+                  >
+                    <Bell className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                    {unreadNotifications > 0 && (
+                      <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                        {unreadNotifications}
+                      </span>
+                    )}
+                  </button>
+                )}
+
                 {/* PDF 내보내기 버튼 */}
                 {isAuthenticated && (
                   <button
@@ -185,6 +235,40 @@ function AppContent() {
                         >
                           <Settings className="w-4 h-4" />
                           <span>설정</span>
+                        </button>
+                        {user?.subscriptionTier === 'enterprise' && (
+                          <button
+                            onClick={() => {
+                              setActiveSection('team');
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          >
+                            <Users className="w-4 h-4" />
+                            <span>팀 관리</span>
+                          </button>
+                        )}
+                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                          <button
+                            onClick={() => {
+                              setActiveSection('scheduler');
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          >
+                            <Calendar className="w-4 h-4" />
+                            <span>리포트 스케줄링</span>
+                          </button>
+                        )}
+                        <button
+                          onClick={() => {
+                            setActiveSection('api-docs');
+                            setShowUserMenu(false);
+                          }}
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700"
+                        >
+                          <Code className="w-4 h-4" />
+                          <span>API 문서</span>
                         </button>
                         <button
                           onClick={() => {
@@ -326,6 +410,9 @@ function AppContent() {
         {activeSection === 'pricing' && <PricingAnalysis />}
         {activeSection === 'industry' && <IndustryAnalysis />}
         {activeSection === 'reports' && <SavedReportsPage />}
+        {activeSection === 'team' && <TeamManagement />}
+        {activeSection === 'scheduler' && <ReportScheduler />}
+        {activeSection === 'api-docs' && <APIDocumentation />}
         {activeSection === 'plans' && <PricingModal isOpen={true} onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} onCheckout={handleCheckout} />}
         {activeSection === 'faq' && <FAQPage />}
         {activeSection === 'contact' && <ContactPage />}
@@ -348,6 +435,22 @@ function AppContent() {
           isOpen={showPricingModal}
           onClose={() => setShowPricingModal(false)}
           onCheckout={handleCheckout}
+        />
+      )}
+
+      {/* Global Search */}
+      <GlobalSearch
+        isOpen={showGlobalSearch}
+        onClose={() => setShowGlobalSearch(false)}
+        onNavigate={handleNavigate}
+      />
+
+      {/* Notification Center */}
+      {showNotifications && (
+        <NotificationCenter
+          isOpen={showNotifications}
+          onClose={() => setShowNotifications(false)}
+          onNavigate={handleNavigate}
         />
       )}
 
