@@ -1,21 +1,26 @@
 import React from 'react';
 import { X, Check, Crown, Zap, Building } from 'lucide-react';
-import { SUBSCRIPTION_PLANS } from '../types/subscription';
+import { SUBSCRIPTION_PLANS, SubscriptionTier } from '../types/subscription';
 import { useAuth } from '../contexts/AuthContext';
 
 interface PricingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onCheckout?: (tier: SubscriptionTier) => void;
 }
 
-const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose }) => {
+const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout }) => {
   const { user, upgradeTier } = useAuth();
 
   if (!isOpen) return null;
 
-  const handleUpgrade = (tier: 'free' | 'premium' | 'enterprise') => {
-    upgradeTier(tier);
-    onClose();
+  const handleUpgrade = (tier: SubscriptionTier) => {
+    if (tier !== 'free' && onCheckout) {
+      onCheckout(tier);
+    } else {
+      upgradeTier(tier);
+      onClose();
+    }
   };
 
   const tierIcons = {
