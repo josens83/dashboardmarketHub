@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code, Activity as ActivityIcon, Database, Webhook, LayoutGrid } from 'lucide-react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code, Activity as ActivityIcon, Database, Webhook, LayoutGrid, Loader2 } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { UserDataProvider } from './contexts/UserDataContext';
 import { ToastProvider } from './contexts/ToastContext';
+import { LoadingProvider } from './contexts/LoadingContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import GlobalSearch from './components/GlobalSearch';
 import NotificationCenter from './components/NotificationCenter';
@@ -12,27 +13,41 @@ import ServiceComparison from './components/ServiceComparison';
 import PricingAnalysis from './components/PricingAnalysis';
 import IndustryAnalysis from './components/IndustryAnalysis';
 import UserDashboard from './components/UserDashboard';
-import SavedReportsPage from './components/SavedReportsPage';
-import TeamManagement from './components/TeamManagement';
-import ReportScheduler from './components/ReportScheduler';
-import APIDocumentation from './components/APIDocumentation';
-import AdminDashboard from './components/AdminDashboard';
-import ActivityLogs from './components/ActivityLogs';
-import DataExportCenter from './components/DataExportCenter';
-import WebhookSettings from './components/WebhookSettings';
-import CustomReportBuilder from './components/CustomReportBuilder';
-import TemplateGallery from './components/TemplateGallery';
-import FAQPage from './components/FAQPage';
-import ContactPage from './components/ContactPage';
-import SettingsPage from './components/SettingsPage';
-import TermsOfService from './components/TermsOfService';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import CheckoutPage from './components/CheckoutPage';
 import AuthModal from './components/AuthModal';
 import PricingModal from './components/PricingModal';
 import OnboardingTour from './components/OnboardingTour';
 import { exportToPDF } from './utils/pdfExport';
 import { SubscriptionTier } from './types/subscription';
+
+// 코드 스플리팅 - 성능 최적화를 위한 Lazy Loading
+const SavedReportsPage = lazy(() => import('./components/SavedReportsPage'));
+const TeamManagement = lazy(() => import('./components/TeamManagement'));
+const ReportScheduler = lazy(() => import('./components/ReportScheduler'));
+const APIDocumentation = lazy(() => import('./components/APIDocumentation'));
+const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
+const ActivityLogs = lazy(() => import('./components/ActivityLogs'));
+const DataExportCenter = lazy(() => import('./components/DataExportCenter'));
+const WebhookSettings = lazy(() => import('./components/WebhookSettings'));
+const CustomReportBuilder = lazy(() => import('./components/CustomReportBuilder'));
+const TemplateGallery = lazy(() => import('./components/TemplateGallery'));
+const FAQPage = lazy(() => import('./components/FAQPage'));
+const ContactPage = lazy(() => import('./components/ContactPage'));
+const SettingsPage = lazy(() => import('./components/SettingsPage'));
+const TermsOfService = lazy(() => import('./components/TermsOfService'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const CheckoutPage = lazy(() => import('./components/CheckoutPage'));
+
+// 로딩 Fallback 컴포넌트
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="text-center">
+        <Loader2 className="w-12 h-12 text-purple-600 animate-spin mx-auto mb-4" />
+        <p className="text-gray-600 dark:text-gray-400">로딩 중...</p>
+      </div>
+    </div>
+  );
+}
 
 function AppContent() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -468,35 +483,37 @@ function AppContent() {
 
       {/* 메인 컨텐츠 */}
       <main id="main-content" className={isFullPageView ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'}>
-        {activeSection === 'landing' && <LandingPage onGetStarted={handleGetStarted} onViewPricing={handleViewPricing} />}
-        {activeSection === 'dashboard' && <UserDashboard />}
-        {activeSection === 'templates' && <TemplateGallery />}
-        {activeSection === 'overview' && <MarketOverview />}
-        {activeSection === 'comparison' && <ServiceComparison />}
-        {activeSection === 'pricing' && <PricingAnalysis />}
-        {activeSection === 'industry' && <IndustryAnalysis />}
-        {activeSection === 'reports' && <SavedReportsPage />}
-        {activeSection === 'team' && <TeamManagement />}
-        {activeSection === 'scheduler' && <ReportScheduler />}
-        {activeSection === 'api-docs' && <APIDocumentation />}
-        {activeSection === 'admin' && <AdminDashboard />}
-        {activeSection === 'activity' && <ActivityLogs />}
-        {activeSection === 'data' && <DataExportCenter />}
-        {activeSection === 'webhooks' && <WebhookSettings />}
-        {activeSection === 'report-builder' && <CustomReportBuilder />}
-        {activeSection === 'plans' && <PricingModal isOpen={true} onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} onCheckout={handleCheckout} />}
-        {activeSection === 'faq' && <FAQPage />}
-        {activeSection === 'contact' && <ContactPage />}
-        {activeSection === 'settings' && <SettingsPage />}
-        {activeSection === 'terms' && <TermsOfService onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} />}
-        {activeSection === 'privacy' && <PrivacyPolicy onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} />}
-        {activeSection === 'checkout' && checkoutTier && (
-          <CheckoutPage
-            selectedTier={checkoutTier}
-            onClose={() => setActiveSection('plans')}
-            onSuccess={handleCheckoutSuccess}
-          />
-        )}
+        <Suspense fallback={<LoadingFallback />}>
+          {activeSection === 'landing' && <LandingPage onGetStarted={handleGetStarted} onViewPricing={handleViewPricing} />}
+          {activeSection === 'dashboard' && <UserDashboard />}
+          {activeSection === 'templates' && <TemplateGallery />}
+          {activeSection === 'overview' && <MarketOverview />}
+          {activeSection === 'comparison' && <ServiceComparison />}
+          {activeSection === 'pricing' && <PricingAnalysis />}
+          {activeSection === 'industry' && <IndustryAnalysis />}
+          {activeSection === 'reports' && <SavedReportsPage />}
+          {activeSection === 'team' && <TeamManagement />}
+          {activeSection === 'scheduler' && <ReportScheduler />}
+          {activeSection === 'api-docs' && <APIDocumentation />}
+          {activeSection === 'admin' && <AdminDashboard />}
+          {activeSection === 'activity' && <ActivityLogs />}
+          {activeSection === 'data' && <DataExportCenter />}
+          {activeSection === 'webhooks' && <WebhookSettings />}
+          {activeSection === 'report-builder' && <CustomReportBuilder />}
+          {activeSection === 'plans' && <PricingModal isOpen={true} onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} onCheckout={handleCheckout} />}
+          {activeSection === 'faq' && <FAQPage />}
+          {activeSection === 'contact' && <ContactPage />}
+          {activeSection === 'settings' && <SettingsPage />}
+          {activeSection === 'terms' && <TermsOfService onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} />}
+          {activeSection === 'privacy' && <PrivacyPolicy onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} />}
+          {activeSection === 'checkout' && checkoutTier && (
+            <CheckoutPage
+              selectedTier={checkoutTier}
+              onClose={() => setActiveSection('plans')}
+              onSuccess={handleCheckoutSuccess}
+            />
+          )}
+        </Suspense>
       </main>
 
       {/* 모달들 */}
@@ -588,7 +605,9 @@ function App() {
       <AuthProvider>
         <UserDataProvider>
           <ToastProvider>
-            <AppContent />
+            <LoadingProvider>
+              <AppContent />
+            </LoadingProvider>
           </ToastProvider>
         </UserDataProvider>
       </AuthProvider>
