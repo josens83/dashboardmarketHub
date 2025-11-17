@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code } from 'lucide-react';
+import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code, Activity as ActivityIcon, Database, Webhook, LayoutGrid } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { UserDataProvider } from './contexts/UserDataContext';
 import { ToastProvider } from './contexts/ToastContext';
@@ -16,6 +16,11 @@ import SavedReportsPage from './components/SavedReportsPage';
 import TeamManagement from './components/TeamManagement';
 import ReportScheduler from './components/ReportScheduler';
 import APIDocumentation from './components/APIDocumentation';
+import AdminDashboard from './components/AdminDashboard';
+import ActivityLogs from './components/ActivityLogs';
+import DataExportCenter from './components/DataExportCenter';
+import WebhookSettings from './components/WebhookSettings';
+import CustomReportBuilder from './components/CustomReportBuilder';
 import FAQPage from './components/FAQPage';
 import ContactPage from './components/ContactPage';
 import SettingsPage from './components/SettingsPage';
@@ -143,7 +148,7 @@ function AppContent() {
 
   // 랜딩 페이지는 헤더/푸터가 다름
   const isLandingPage = activeSection === 'landing';
-  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs'].includes(activeSection);
+  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs', 'admin', 'activity', 'data', 'webhooks', 'report-builder'].includes(activeSection);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
@@ -260,16 +265,74 @@ function AppContent() {
                             <span>리포트 스케줄링</span>
                           </button>
                         )}
+                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                          <button
+                            onClick={() => {
+                              setActiveSection('report-builder');
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          >
+                            <LayoutGrid className="w-4 h-4" />
+                            <span>리포트 빌더</span>
+                          </button>
+                        )}
+                        <button
+                          onClick={() => {
+                            setActiveSection('data');
+                            setShowUserMenu(false);
+                          }}
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700"
+                        >
+                          <Database className="w-4 h-4" />
+                          <span>데이터 관리</span>
+                        </button>
+                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                          <button
+                            onClick={() => {
+                              setActiveSection('activity');
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          >
+                            <ActivityIcon className="w-4 h-4" />
+                            <span>활동 로그</span>
+                          </button>
+                        )}
+                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                          <button
+                            onClick={() => {
+                              setActiveSection('webhooks');
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          >
+                            <Webhook className="w-4 h-4" />
+                            <span>Webhook 설정</span>
+                          </button>
+                        )}
                         <button
                           onClick={() => {
                             setActiveSection('api-docs');
                             setShowUserMenu(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700"
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                         >
                           <Code className="w-4 h-4" />
                           <span>API 문서</span>
                         </button>
+                        {user?.email === 'admin@bimarket.com' && (
+                          <button
+                            onClick={() => {
+                              setActiveSection('admin');
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-purple-600 border-t border-gray-200 dark:border-gray-700"
+                          >
+                            <Shield className="w-4 h-4" />
+                            <span>관리자 대시보드</span>
+                          </button>
+                        )}
                         <button
                           onClick={() => {
                             setShowPricingModal(true);
@@ -413,6 +476,11 @@ function AppContent() {
         {activeSection === 'team' && <TeamManagement />}
         {activeSection === 'scheduler' && <ReportScheduler />}
         {activeSection === 'api-docs' && <APIDocumentation />}
+        {activeSection === 'admin' && <AdminDashboard />}
+        {activeSection === 'activity' && <ActivityLogs />}
+        {activeSection === 'data' && <DataExportCenter />}
+        {activeSection === 'webhooks' && <WebhookSettings />}
+        {activeSection === 'report-builder' && <CustomReportBuilder />}
         {activeSection === 'plans' && <PricingModal isOpen={true} onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} onCheckout={handleCheckout} />}
         {activeSection === 'faq' && <FAQPage />}
         {activeSection === 'contact' && <ContactPage />}
