@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
-import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code, Activity as ActivityIcon, Database, Webhook, LayoutGrid, Loader2 } from 'lucide-react';
+import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code, Activity as ActivityIcon, Database, Webhook, LayoutGrid, Loader2, Link as LinkIcon } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { UserDataProvider } from './contexts/UserDataContext';
 import { ToastProvider } from './contexts/ToastContext';
@@ -36,6 +36,7 @@ const SettingsPage = lazy(() => import('./components/SettingsPage'));
 const TermsOfService = lazy(() => import('./components/TermsOfService'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 const CheckoutPage = lazy(() => import('./components/CheckoutPage'));
+const DataConnector = lazy(() => import('./components/DataConnector'));
 
 // 로딩 Fallback 컴포넌트
 function LoadingFallback() {
@@ -165,7 +166,7 @@ function AppContent() {
 
   // 랜딩 페이지는 헤더/푸터가 다름
   const isLandingPage = activeSection === 'landing';
-  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs', 'admin', 'activity', 'data', 'webhooks', 'report-builder', 'templates'].includes(activeSection);
+  const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs', 'admin', 'activity', 'data', 'webhooks', 'report-builder', 'templates', 'data-connector'].includes(activeSection);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
@@ -303,6 +304,16 @@ function AppContent() {
                         >
                           <Database className="w-4 h-4" />
                           <span>데이터 관리</span>
+                        </button>
+                        <button
+                          onClick={() => {
+                            setActiveSection('data-connector');
+                            setShowUserMenu(false);
+                          }}
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                        >
+                          <LinkIcon className="w-4 h-4" />
+                          <span>데이터 커넥터</span>
                         </button>
                         {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
                           <button
@@ -498,6 +509,7 @@ function AppContent() {
           {activeSection === 'admin' && <AdminDashboard />}
           {activeSection === 'activity' && <ActivityLogs />}
           {activeSection === 'data' && <DataExportCenter />}
+          {activeSection === 'data-connector' && <DataConnector />}
           {activeSection === 'webhooks' && <WebhookSettings />}
           {activeSection === 'report-builder' && <CustomReportBuilder />}
           {activeSection === 'plans' && <PricingModal isOpen={true} onClose={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')} onCheckout={handleCheckout} />}

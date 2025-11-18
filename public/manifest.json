@@ -1,12 +1,16 @@
 {
   "name": "Dashboard Market Hub",
   "short_name": "DM Hub",
-  "description": "유료 대시보드 구축 서비스 시장 분석 플랫폼",
+  "description": "BI 대시보드 시장 분석 플랫폼 - 데이터 기반 의사결정 지원",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2563eb",
+  "theme_color": "#9333ea",
   "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -20,5 +24,44 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "대시보드",
+      "short_name": "대시보드",
+      "description": "나의 대시보드 보기",
+      "url": "/?page=dashboard",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "시장 분석",
+      "short_name": "분석",
+      "description": "시장 분석 보기",
+      "url": "/?page=overview",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "리포트",
+      "short_name": "리포트",
+      "description": "저장된 리포트 보기",
+      "url": "/?page=reports",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "data",
+          "accept": ["text/csv", "application/json", ".csv", ".json"]
+        }
+      ]
+    }
+  }
 }
