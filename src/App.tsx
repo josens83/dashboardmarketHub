@@ -5,35 +5,35 @@ import { UserDataProvider } from '@/shared/contexts/UserDataContext';
 import { ToastProvider } from '@/shared/contexts/ToastContext';
 import { LoadingProvider } from '@/shared/contexts/LoadingContext';
 import { ErrorBoundary, GlobalSearch, NotificationCenter, OnboardingTour } from '@/shared/components';
-import LandingPage from './components/LandingPage';
-import MarketOverview from './components/MarketOverview';
-import ServiceComparison from './components/ServiceComparison';
-import PricingAnalysis from './components/PricingAnalysis';
-import IndustryAnalysis from './components/IndustryAnalysis';
-import UserDashboard from './components/UserDashboard';
-import AuthModal from './components/AuthModal';
-import PricingModal from './components/PricingModal';
+import { LandingPage, AuthModal } from '@/features/auth';
+import { MarketOverview, ServiceComparison, PricingAnalysis, IndustryAnalysis, UserDashboard } from '@/features/dashboard';
+
+
+
+
+
+import { PricingModal } from '@/features/subscription';
 import { exportToPDF } from '@/shared/utils/pdfExport';
 import { SubscriptionTier } from '@/shared/types/subscription';
 
 // 코드 스플리팅 - 성능 최적화를 위한 Lazy Loading
-const SavedReportsPage = lazy(() => import('./components/SavedReportsPage'));
-const TeamManagement = lazy(() => import('./components/TeamManagement'));
-const ReportScheduler = lazy(() => import('./components/ReportScheduler'));
-const APIDocumentation = lazy(() => import('./components/APIDocumentation'));
-const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
-const ActivityLogs = lazy(() => import('./components/ActivityLogs'));
-const DataExportCenter = lazy(() => import('./components/DataExportCenter'));
-const WebhookSettings = lazy(() => import('./components/WebhookSettings'));
-const CustomReportBuilder = lazy(() => import('./components/CustomReportBuilder'));
-const TemplateGallery = lazy(() => import('./components/TemplateGallery'));
-const FAQPage = lazy(() => import('./components/FAQPage'));
-const ContactPage = lazy(() => import('./components/ContactPage'));
-const SettingsPage = lazy(() => import('./components/SettingsPage'));
-const TermsOfService = lazy(() => import('./components/TermsOfService'));
-const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
-const CheckoutPage = lazy(() => import('./components/CheckoutPage'));
-const DataConnector = lazy(() => import('./components/DataConnector'));
+const SavedReportsPage = lazy(() => import('@/features/reports/SavedReportsPage'));
+const TeamManagement = lazy(() => import('@/features/settings/TeamManagement'));
+const ReportScheduler = lazy(() => import('@/features/reports/ReportScheduler'));
+const APIDocumentation = lazy(() => import('@/features/pages/APIDocumentation'));
+const AdminDashboard = lazy(() => import('@/features/admin/AdminDashboard'));
+const ActivityLogs = lazy(() => import('@/features/admin/ActivityLogs'));
+const DataExportCenter = lazy(() => import('@/features/reports/DataExportCenter'));
+const WebhookSettings = lazy(() => import('@/features/settings/WebhookSettings'));
+const CustomReportBuilder = lazy(() => import('@/features/reports/CustomReportBuilder'));
+const TemplateGallery = lazy(() => import('@/features/reports/TemplateGallery'));
+const FAQPage = lazy(() => import('@/features/pages/FAQPage'));
+const ContactPage = lazy(() => import('@/features/pages/ContactPage'));
+const SettingsPage = lazy(() => import('@/features/settings/SettingsPage'));
+const TermsOfService = lazy(() => import('@/features/pages/TermsOfService'));
+const PrivacyPolicy = lazy(() => import('@/features/pages/PrivacyPolicy'));
+const CheckoutPage = lazy(() => import('@/features/subscription/CheckoutPage'));
+const DataConnector = lazy(() => import('@/features/settings/DataConnector'));
 
 // 로딩 Fallback 컴포넌트
 function LoadingFallback() {

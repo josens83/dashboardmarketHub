@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { DollarSign, Calculator } from 'lucide-react';
-import { pricingComparison } from '../data/marketData';
+import { pricingComparison } from '@/data/marketData';
 
 const PricingAnalysis: React.FC = () => {
   const [selectedTier, setSelectedTier] = useState<'small' | 'medium' | 'large'>('medium');

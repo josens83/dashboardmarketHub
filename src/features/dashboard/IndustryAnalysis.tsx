@@ -15,7 +15,7 @@ import {
   Radar,
 } from 'recharts';
 import { Building2, TrendingUp, Clock, Award } from 'lucide-react';
-import { industryDemands } from '../data/marketData';
+import { industryDemands } from '@/data/marketData';
 import { DataExportButton } from '@/shared/components';
 
 const IndustryAnalysis: React.FC = () => {

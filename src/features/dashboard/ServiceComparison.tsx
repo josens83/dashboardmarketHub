@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Filter, CheckCircle2, GitCompare } from 'lucide-react';
-import { serviceComparisons } from '../data/marketData';
+import { serviceComparisons } from '@/data/marketData';
 import { DataExportButton } from '@/shared/components';
 import { ComparisonTool } from '@/shared/components';
 

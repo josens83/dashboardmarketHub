@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FileDown, FileSpreadsheet, Lock } from 'lucide-react';
 import { useAuth } from '@/shared/contexts/AuthContext';
-import PricingModal from '@/components/PricingModal';
+import { PricingModal } from '@/features/subscription';
 import {
   exportToCSV,
   prepareMarketDataForExport,
