@@ -1,13 +1,16 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { captureException } from '@/shared/lib/sentry';
 
 interface Props {
   children: ReactNode;
+  fallback?: ReactNode;
 }
 
 interface State {
   hasError: boolean;
   error?: Error;
+  eventId?: string;
 }
 
 class ErrorBoundary extends Component<Props, State> {
@@ -21,6 +24,16 @@ class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
+
+    // Report error to Sentry
+    try {
+      captureException(error, {
+        componentStack: errorInfo.componentStack,
+        errorBoundary: true,
+      });
+    } catch (sentryError) {
+      console.error('Failed to report error to Sentry:', sentryError);
+    }
   }
 
   private handleReset = () => {
