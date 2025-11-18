@@ -11,7 +11,7 @@ import {
 } from 'recharts';
 import { TrendingUp, Globe, MapPin } from 'lucide-react';
 import { marketGrowthData, marketCAGR } from '../data/marketData';
-import DataExportButton from './DataExportButton';
+import { DataExportButton } from '@/shared/components';
 
 const MarketOverview: React.FC = () => {
   return (

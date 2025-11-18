@@ -16,7 +16,7 @@ import {
 } from 'recharts';
 import { Building2, TrendingUp, Clock, Award } from 'lucide-react';
 import { industryDemands } from '../data/marketData';
-import DataExportButton from './DataExportButton';
+import { DataExportButton } from '@/shared/components';
 
 const IndustryAnalysis: React.FC = () => {
   const [selectedIndustry, setSelectedIndustry] = useState(0);

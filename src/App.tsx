@@ -4,9 +4,7 @@ import { AuthProvider, useAuth } from '@/shared/contexts/AuthContext';
 import { UserDataProvider } from '@/shared/contexts/UserDataContext';
 import { ToastProvider } from '@/shared/contexts/ToastContext';
 import { LoadingProvider } from '@/shared/contexts/LoadingContext';
-import ErrorBoundary from './components/ErrorBoundary';
-import GlobalSearch from './components/GlobalSearch';
-import NotificationCenter from './components/NotificationCenter';
+import { ErrorBoundary, GlobalSearch, NotificationCenter, OnboardingTour } from '@/shared/components';
 import LandingPage from './components/LandingPage';
 import MarketOverview from './components/MarketOverview';
 import ServiceComparison from './components/ServiceComparison';
@@ -15,7 +13,6 @@ import IndustryAnalysis from './components/IndustryAnalysis';
 import UserDashboard from './components/UserDashboard';
 import AuthModal from './components/AuthModal';
 import PricingModal from './components/PricingModal';
-import OnboardingTour from './components/OnboardingTour';
 import { exportToPDF } from '@/shared/utils/pdfExport';
 import { SubscriptionTier } from '@/shared/types/subscription';
 

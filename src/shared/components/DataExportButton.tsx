@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FileDown, FileSpreadsheet, Lock } from 'lucide-react';
 import { useAuth } from '@/shared/contexts/AuthContext';
-import PricingModal from './PricingModal';
+import PricingModal from '@/components/PricingModal';
 import {
   exportToCSV,
   prepareMarketDataForExport,
   prepareServiceDataForExport,
   prepareIndustryDataForExport,
 } from '@/shared/utils/dataExport';
-import { marketGrowthData, serviceComparisons, industryDemands } from '../data/marketData';
+import { marketGrowthData, serviceComparisons, industryDemands } from '@/data/marketData';
 
 interface DataExportButtonProps {
   dataType: 'market' | 'services' | 'industry';
