@@ -3,27 +3,116 @@
 @tailwind utilities;
 
 @layer base {
+  /* CSS 변수 - 디자인 토큰 */
+  :root {
+    --color-bg: 255, 255, 255;
+    --color-bg-elevated: 248, 250, 252;
+    --color-text-primary: 15, 23, 42;
+    --color-text-secondary: 100, 116, 139;
+    --color-border: 226, 232, 240;
+    --color-border-subtle: 241, 245, 249;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: 10, 10, 10;
+      --color-bg-elevated: 23, 23, 23;
+      --color-text-primary: 248, 250, 252;
+      --color-text-secondary: 148, 163, 184;
+      --color-border: 38, 38, 38;
+      --color-border-subtle: 30, 30, 30;
+    }
+  }
+
   body {
-    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer components {
+  /* Linear 스타일 카드 */
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-6;
+    @apply bg-white/80 dark:bg-white/5 backdrop-blur-xl rounded-xl border border-gray-200/50 dark:border-white/10 p-6;
+    @apply shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_2px_4px_rgba(0,0,0,0.05),0_12px_24px_rgba(0,0,0,0.05)];
+    @apply dark:shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_2px_4px_rgba(0,0,0,0.3),0_12px_24px_rgba(0,0,0,0.4)];
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .card:hover {
+    @apply border-gray-300/50 dark:border-white/20;
+    @apply shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_rgba(0,0,0,0.08)];
+    @apply dark:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_4px_8px_rgba(0,0,0,0.4),0_16px_32px_rgba(0,0,0,0.5)];
+    transform: translateY(-1px);
+  }
+
+  /* 글래스모피즘 카드 */
+  .glass-card {
+    @apply bg-white/10 dark:bg-white/5 backdrop-blur-2xl rounded-2xl border border-white/20 dark:border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* 세련된 버튼 */
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 px-5 rounded-lg;
+    @apply transition-all duration-200 ease-out;
+    @apply shadow-[0_0_0_1px_rgba(147,51,234,0.1),0_1px_2px_rgba(147,51,234,0.3)];
+  }
+
+  .btn-primary:hover {
+    @apply shadow-[0_0_0_1px_rgba(147,51,234,0.2),0_2px_4px_rgba(147,51,234,0.4),0_8px_16px_rgba(147,51,234,0.2)];
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
-    @apply bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 text-gray-900 dark:text-gray-100 font-semibold py-2.5 px-5 rounded-lg;
+    @apply transition-all duration-200 ease-out;
+    @apply border border-gray-200 dark:border-white/10;
+  }
+
+  .btn-secondary:hover {
+    @apply border-gray-300 dark:border-white/20;
+    transform: translateY(-1px);
+  }
+
+  /* 그러데이션 글로우 */
+  .gradient-glow {
+    position: relative;
+  }
+
+  .gradient-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, transparent 70%);
+    filter: blur(40px);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  /* 극도로 얇은 테두리 효과 */
+  .border-subtle {
+    @apply border border-gray-200/30 dark:border-white/5;
+  }
+
+  /* Bento 그리드 컨테이너 */
+  .bento-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
   }
 }
 
@@ -48,14 +137,16 @@
   @keyframes fade-in {
     from {
       opacity: 0;
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
+      transform: translateY(0);
     }
   }
 
   .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Pulse animation */
@@ -72,9 +163,71 @@
     animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* Grid pattern */
-  .bg-grid-white\/10 {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  /* Float animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Grid pattern - 향상된 버전 */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Dot pattern */
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* 그러데이션 배경 */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.15), transparent 50%);
+  }
+
+  .bg-gradient-conic {
+    background: conic-gradient(from 180deg at 50% 50%, rgba(147, 51, 234, 0.1) 0deg, transparent 60deg, transparent 300deg, rgba(147, 51, 234, 0.1) 360deg);
+  }
+
+  /* 텍스트 그러데이션 */
+  .text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { BarChart3, TrendingUp, Shield, Zap, CheckCircle, Star, ArrowRight, Users, Clock, Award } from 'lucide-react';
+import React from 'react';
+import { BarChart3, TrendingUp, Shield, Zap, CheckCircle, Star, ArrowRight, Users, Clock, Award, Sparkles, Database } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { SUBSCRIPTION_PLANS } from '../types/subscription';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -10,43 +9,46 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }) => {
   const { user } = useAuth();
-  const [activePlan, setActivePlan] = useState<number>(1);
 
   const features = [
     {
-      icon: <BarChart3 className="w-8 h-8" />,
+      icon: <BarChart3 className="w-6 h-6" />,
       title: '실시간 시장 분석',
-      description: 'BI 대시보드 시장의 최신 트렌드와 성장률을 실시간으로 확인하세요.'
+      description: 'BI 대시보드 시장의 최신 트렌드와 성장률을 실시간으로 확인하세요.',
+      gradient: 'from-purple-500 to-pink-500'
     },
     {
-      icon: <TrendingUp className="w-8 h-8" />,
+      icon: <TrendingUp className="w-6 h-6" />,
       title: '경쟁사 비교',
-      description: 'Tableau, Power BI, Qlik 등 주요 서비스를 한눈에 비교하고 분석하세요.'
+      description: 'Tableau, Power BI, Qlik 등 주요 서비스를 한눈에 비교하고 분석하세요.',
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
-      icon: <Shield className="w-8 h-8" />,
+      icon: <Shield className="w-6 h-6" />,
       title: '신뢰할 수 있는 데이터',
-      description: '검증된 시장 조사 데이터를 기반으로 정확한 인사이트를 제공합니다.'
+      description: '검증된 시장 조사 데이터를 기반으로 정확한 인사이트를 제공합니다.',
+      gradient: 'from-emerald-500 to-teal-500'
     },
     {
-      icon: <Zap className="w-8 h-8" />,
+      icon: <Zap className="w-6 h-6" />,
       title: '빠른 리포트 생성',
-      description: 'PDF, Excel로 즉시 내보내기하여 프레젠테이션에 바로 활용하세요.'
+      description: 'PDF, Excel로 즉시 내보내기하여 프레젠테이션에 바로 활용하세요.',
+      gradient: 'from-amber-500 to-orange-500'
     }
   ];
 
-  const benefits = [
-    '전 세계 BI 시장 트렌드 파악',
-    '데이터 기반 의사결정',
-    '경쟁 우위 확보',
-    '비용 절감 및 ROI 향상'
+  const stats = [
+    { icon: <Users className="w-5 h-5" />, value: '10,000+', label: '활성 사용자' },
+    { icon: <BarChart3 className="w-5 h-5" />, value: '50+', label: '분석된 서비스' },
+    { icon: <Clock className="w-5 h-5" />, value: '24/7', label: '실시간 업데이트' },
+    { icon: <Award className="w-5 h-5" />, value: '99%', label: '고객 만족도' }
   ];
 
   const testimonials = [
     {
       name: '김민수',
       role: 'CTO, TechCorp',
-      content: '대시보드 마켓 허브 덕분에 우리 회사에 맞는 BI 솔루션을 빠르게 선택할 수 있었습니다. 시장 분석 리포트가 정말 유용했어요.',
+      content: '대시보드 마켓 허브 덕분에 우리 회사에 맞는 BI 솔루션을 빠르게 선택할 수 있었습니다.',
       rating: 5
     },
     {
@@ -63,50 +65,60 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
     }
   ];
 
-  const stats = [
-    { icon: <Users className="w-6 h-6" />, value: '10,000+', label: '활성 사용자' },
-    { icon: <BarChart3 className="w-6 h-6" />, value: '50+', label: '분석된 서비스' },
-    { icon: <Clock className="w-6 h-6" />, value: '24/7', label: '실시간 업데이트' },
-    { icon: <Award className="w-6 h-6" />, value: '99%', label: '고객 만족도' }
-  ];
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/10 bg-[size:20px_20px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50" />
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0a]">
+      {/* Hero Section - Linear 스타일 */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* 배경 그리드 패턴 */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-50" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 그러데이션 글로우 효과 */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-gradient-radial opacity-40 blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              BI 대시보드 시장을<br />
-              <span className="text-purple-200">한눈에 파악하세요</span>
+            {/* 배지 */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 backdrop-blur-sm mb-8 animate-fade-in">
+              <Sparkles className="w-4 h-4 text-purple-400" />
+              <span className="text-sm font-medium text-purple-300">프로덕션 런칭 완료</span>
+            </div>
+
+            {/* 메인 헤드라인 */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.1] tracking-tight animate-fade-in">
+              <span className="text-gray-900 dark:text-white">BI 대시보드 시장을</span>
+              <br />
+              <span className="text-gradient-purple">한눈에 파악하세요</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-purple-100 max-w-3xl mx-auto">
-              데이터 기반 의사결정을 위한 가장 강력한 BI 시장 분석 플랫폼
+
+            {/* 서브헤드라인 */}
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              Tableau, Power BI, Qlik 등 주요 BI 서비스를 비교하고 시장 트렌드를 분석하는 전문 플랫폼
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            {/* CTA 버튼 */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               {user ? (
                 <button
                   onClick={onGetStarted}
-                  className="px-8 py-4 bg-white text-purple-700 rounded-lg font-semibold text-lg hover:bg-purple-50 transition-all transform hover:scale-105 shadow-xl"
+                  className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
                 >
                   대시보드로 이동
+                  <ArrowRight className="w-5 h-5" />
                 </button>
               ) : (
                 <>
                   <button
                     onClick={onGetStarted}
-                    className="px-8 py-4 bg-white text-purple-700 rounded-lg font-semibold text-lg hover:bg-purple-50 transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 justify-center"
+                    className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
                   >
                     무료로 시작하기
                     <ArrowRight className="w-5 h-5" />
                   </button>
                   <button
                     onClick={onViewPricing}
-                    className="px-8 py-4 bg-purple-500/20 backdrop-blur-sm border-2 border-white/30 text-white rounded-lg font-semibold text-lg hover:bg-purple-500/30 transition-all"
+                    className="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg"
                   >
                     요금제 보기
                   </button>
@@ -115,197 +127,107 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
               {stats.map((stat, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                  <div className="flex justify-center mb-2 text-purple-200">
+                <div key={index} className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 mb-3">
                     {stat.icon}
                   </div>
-                  <div className="text-2xl font-bold mb-1">{stat.value}</div>
-                  <div className="text-sm text-purple-200">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
+        {/* 하단 그러데이션 페이드 */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-[#0a0a0a] to-transparent" />
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Features Section - Bento Grid */}
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              왜 대시보드 마켓 허브인가요?
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              강력한 기능으로 <span className="text-gradient-purple">완벽한 분석</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              복잡한 BI 시장을 단순하고 명확하게 분석합니다
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              실시간 데이터 연동부터 AI 기반 인사이트까지, 모든 것을 한 곳에서
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700"
+                className={`glass-card p-8 hover:scale-[1.02] transition-all duration-300 group ${
+                  index === 0 ? 'md:col-span-2 lg:row-span-2' : ''
+                }`}
               >
-                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} p-3 mb-6 text-white shadow-lg`}>
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
+                {index === 0 && (
+                  <div className="mt-8 pt-8 border-t border-gray-200/50 dark:border-white/10">
+                    <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold group-hover:gap-3 transition-all">
+                      자세히 보기
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-purple-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                비즈니스 성장을 위한<br />핵심 인사이트
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                대시보드 마켓 허브는 BI 시장의 복잡한 데이터를 분석하여
-                여러분의 비즈니스 의사결정을 지원합니다.
-              </p>
-              <ul className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
-                    <span className="text-lg">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl p-8 text-white shadow-2xl">
-                <div className="text-5xl font-bold mb-2">₩29,000</div>
-                <div className="text-purple-200 mb-6">월 구독료로 모든 기능 이용</div>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5" />
-                    무제한 데이터 내보내기
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5" />
-                    고급 비교 도구
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5" />
-                    우선 고객 지원
-                  </li>
-                </ul>
-                <button
-                  onClick={onViewPricing}
-                  className="w-full py-3 bg-white text-purple-700 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
-                >
-                  지금 시작하기
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Social Proof - Testimonials */}
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              고객들의 이야기
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              고객들이 <span className="text-gradient-purple">말하는 성공 스토리</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              이미 수천 명의 전문가들이 사용하고 있습니다
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              전 세계 10,000+ 기업이 신뢰하는 플랫폼
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700"
+                className="card p-8 hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
+                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                   "{testimonial.content}"
                 </p>
-                <div>
-                  <div className="font-semibold text-gray-900 dark:text-white">
-                    {testimonial.name}
+                <div className="flex items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-white/10">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+                    {testimonial.name[0]}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {testimonial.role}
+                  <div>
+                    <div className="font-semibold text-gray-900 dark:text-white">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {testimonial.role}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Preview */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              투명하고 합리적인 가격
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              비즈니스 규모에 맞는 최적의 플랜을 선택하세요
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {SUBSCRIPTION_PLANS.map((plan, index) => (
-              <div
-                key={plan.id}
-                onMouseEnter={() => setActivePlan(index)}
-                className={`bg-white dark:bg-gray-900 rounded-xl p-8 border-2 transition-all cursor-pointer ${
-                  activePlan === index
-                    ? 'border-purple-600 shadow-xl scale-105'
-                    : 'border-gray-200 dark:border-gray-700 hover:border-purple-400'
-                }`}
-              >
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                    {plan.name}
-                  </h3>
-                  <div className="text-4xl font-bold text-purple-600 mb-2">
-                    ₩{plan.price.toLocaleString()}
-                  </div>
-                  <div className="text-gray-600 dark:text-gray-400">/ 월</div>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.slice(0, 5).map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  onClick={onGetStarted}
-                  className={`w-full py-3 rounded-lg font-semibold transition-colors ${
-                    activePlan === index
-                      ? 'bg-purple-600 text-white hover:bg-purple-700'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {plan.price === 0 ? '무료로 시작' : '14일 무료 체험'}
-                </button>
               </div>
             ))}
           </div>
@@ -313,21 +235,48 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-600 to-indigo-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            지금 바로 시작하세요
-          </h2>
-          <p className="text-xl mb-8 text-purple-100">
-            14일 무료 체험으로 모든 프리미엄 기능을 경험해보세요. 신용카드 정보 없이 시작할 수 있습니다.
-          </p>
-          <button
-            onClick={onGetStarted}
-            className="px-10 py-5 bg-white text-purple-700 rounded-lg font-bold text-xl hover:bg-purple-50 transition-all transform hover:scale-105 shadow-2xl inline-flex items-center gap-3"
-          >
-            무료로 시작하기
-            <ArrowRight className="w-6 h-6" />
-          </button>
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* 배경 효과 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-blue-600/10 to-pink-600/10" />
+        <div className="absolute inset-0 bg-dot-pattern opacity-30" />
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          <div className="glass-card p-12 md:p-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              지금 바로 시작하세요
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+              무료 플랜으로 시작하여 필요에 따라 언제든 업그레이드하세요
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={onGetStarted}
+                className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
+              >
+                <Sparkles className="w-5 h-5" />
+                무료로 시작하기
+              </button>
+              <button
+                onClick={onViewPricing}
+                className="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg"
+              >
+                <Database className="w-5 h-5" />
+                요금제 보기
+              </button>
+            </div>
+
+            <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500" />
+                <span>신용카드 불필요</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500" />
+                <span>언제든 취소 가능</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
