@@ -529,7 +529,7 @@ const DataConnector: React.FC = () => {
                       <p className="text-sm text-blue-800 dark:text-blue-200">
                         {user?.subscriptionTier === 'enterprise'
                           ? '엔터프라이즈 플랜에서는 실시간 동기화를 지원합니다.'
-                          : user?.subscriptionTier === 'premium'
+                          : user?.subscriptionTier === 'professional'
                           ? '프리미엄 플랜에서는 최소 5분 간격으로 자동 동기화를 설정할 수 있습니다.'
                           : '무료 플랜에서는 수동 동기화만 가능합니다. 프리미엄으로 업그레이드하여 자동 동기화를 사용하세요.'}
                       </p>
@@ -580,7 +580,7 @@ const DataConnector: React.FC = () => {
             <div className="flex justify-between text-sm">
               <span className="text-gray-600 dark:text-gray-400">현재 연결</span>
               <span className="font-semibold text-gray-900 dark:text-white">
-                {dataSources.length} / {user?.subscriptionTier === 'enterprise' ? '무제한' : user?.subscriptionTier === 'premium' ? '10' : '2'}
+                {dataSources.length} / {user?.subscriptionTier === 'enterprise' ? '무제한' : user?.subscriptionTier === 'professional' ? '10' : '2'}
               </span>
             </div>
             <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -589,7 +589,7 @@ const DataConnector: React.FC = () => {
                 style={{
                   width: `${Math.min(
                     100,
-                    (dataSources.length / (user?.subscriptionTier === 'enterprise' ? 100 : user?.subscriptionTier === 'premium' ? 10 : 2)) * 100
+                    (dataSources.length / (user?.subscriptionTier === 'enterprise' ? 100 : user?.subscriptionTier === 'professional' ? 10 : 2)) * 100
                   )}%`
                 }}
               />

@@ -270,7 +270,7 @@ class WebSocketClient {
           timestamp: Date.now(),
         });
       }
-    }, 30000); // 30초마다
+    }, 30000) as unknown as number; // 30초마다
   }
 }
 

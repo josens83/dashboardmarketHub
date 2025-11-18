@@ -264,14 +264,14 @@ const SettingsPage: React.FC = () => {
                           </h3>
                           <p className="text-sm text-gray-600 dark:text-gray-400">
                             {user?.subscriptionTier === 'free' && '무료 플랜'}
-                            {user?.subscriptionTier === 'premium' && '프리미엄 플랜'}
+                            {user?.subscriptionTier === 'professional' && '프리미엄 플랜'}
                             {user?.subscriptionTier === 'enterprise' && '엔터프라이즈 플랜'}
                           </p>
                         </div>
                         <div className="text-right">
                           <p className="text-2xl font-bold text-purple-600">
                             {user?.subscriptionTier === 'free' && '₩0'}
-                            {user?.subscriptionTier === 'premium' && '₩29,000'}
+                            {user?.subscriptionTier === 'professional' && '₩29,000'}
                             {user?.subscriptionTier === 'enterprise' && '₩99,000'}
                           </p>
                           <p className="text-sm text-gray-600 dark:text-gray-400">/ 월</p>
@@ -317,9 +317,9 @@ const SettingsPage: React.FC = () => {
                         </h3>
                         <div className="space-y-2">
                           {[
-                            { date: '2024-01-01', amount: user?.subscriptionTier === 'premium' ? 29000 : 99000, status: '완료' },
-                            { date: '2023-12-01', amount: user?.subscriptionTier === 'premium' ? 29000 : 99000, status: '완료' },
-                            { date: '2023-11-01', amount: user?.subscriptionTier === 'premium' ? 29000 : 99000, status: '완료' }
+                            { date: '2024-01-01', amount: user?.subscriptionTier === 'professional' ? 29000 : 99000, status: '완료' },
+                            { date: '2023-12-01', amount: user?.subscriptionTier === 'professional' ? 29000 : 99000, status: '완료' },
+                            { date: '2023-11-01', amount: user?.subscriptionTier === 'professional' ? 29000 : 99000, status: '완료' }
                           ].map((item, index) => (
                             <div
                               key={index}

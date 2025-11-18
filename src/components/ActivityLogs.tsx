@@ -64,7 +64,7 @@ const ActivityLogs: React.FC = () => {
       timestamp: new Date('2025-11-17T08:15:00'),
       ipAddress: '123.456.789.013',
       userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
-      details: { from: 'free', to: 'premium', amount: 29000 }
+      details: { from: 'free', to: 'professional', amount: 29000 }
     },
     {
       id: '3',
@@ -288,7 +288,7 @@ const ActivityLogs: React.FC = () => {
   // Enterprise 전용 기능 체크
   const isEnterpriseUser = user?.subscriptionTier === 'enterprise';
 
-  if (!isEnterpriseUser && user?.subscriptionTier !== 'premium') {
+  if (!isEnterpriseUser && user?.subscriptionTier !== 'professional') {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center">

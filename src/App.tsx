@@ -271,7 +271,7 @@ function AppContent() {
                             <span>팀 관리</span>
                           </button>
                         )}
-                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                        {(user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise') && (
                           <button
                             onClick={() => {
                               setActiveSection('scheduler');
@@ -283,7 +283,7 @@ function AppContent() {
                             <span>리포트 스케줄링</span>
                           </button>
                         )}
-                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                        {(user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise') && (
                           <button
                             onClick={() => {
                               setActiveSection('report-builder');
@@ -315,7 +315,7 @@ function AppContent() {
                           <LinkIcon className="w-4 h-4" />
                           <span>데이터 커넥터</span>
                         </button>
-                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                        {(user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise') && (
                           <button
                             onClick={() => {
                               setActiveSection('activity');
@@ -327,7 +327,7 @@ function AppContent() {
                             <span>활동 로그</span>
                           </button>
                         )}
-                        {(user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise') && (
+                        {(user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise') && (
                           <button
                             onClick={() => {
                               setActiveSection('webhooks');

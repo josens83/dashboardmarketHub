@@ -1,0 +1,187 @@
+/**
+ * Supabase Client Configuration
+ * 백엔드 없이 Supabase로 DB, Auth, Storage, Realtime 관리
+ */
+
+import { createClient } from '@supabase/supabase-js';
+import type { Database } from '../types/database';
+
+// Supabase URL과 anon key (환경 변수에서 가져오기)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error(
+    'Supabase 환경 변수가 설정되지 않았습니다.\n' +
+    'VITE_SUPABASE_URL과 VITE_SUPABASE_ANON_KEY를 .env 파일에 추가하세요.'
+  );
+}
+
+// Supabase 클라이언트 생성
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    // 인증 상태를 localStorage에 저장
+    storage: window.localStorage,
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+  },
+  realtime: {
+    // 실시간 기능 설정
+    params: {
+      eventsPerSecond: 10,
+    },
+  },
+});
+
+// 타입 안전한 헬퍼 함수들
+export const supabaseHelpers = {
+  /**
+   * 현재 로그인된 사용자 가져오기
+   */
+  async getCurrentUser() {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error) throw error;
+    return user;
+  },
+
+  /**
+   * 사용자 프로필 가져오기
+   */
+  async getUserProfile(userId: string) {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', userId)
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  /**
+   * 구독 정보 가져오기
+   */
+  async getSubscription(userId: string) {
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  /**
+   * 저장된 리포트 목록 가져오기
+   */
+  async getSavedReports(userId: string) {
+    const { data, error } = await supabase
+      .from('reports')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data;
+  },
+
+  /**
+   * 팀 멤버 목록 가져오기
+   */
+  async getTeamMembers(teamId: string) {
+    const { data, error } = await supabase
+      .from('team_members')
+      .select(`
+        *,
+        users (
+          id,
+          name,
+          email,
+          avatar_url
+        )
+      `)
+      .eq('team_id', teamId);
+
+    if (error) throw error;
+    return data;
+  },
+
+  /**
+   * 활동 로그 가져오기
+   */
+  async getActivityLogs(userId: string, limit = 50) {
+    const { data, error } = await supabase
+      .from('activity_logs')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(limit);
+
+    if (error) throw error;
+    return data;
+  },
+
+  /**
+   * 결제 내역 가져오기
+   */
+  async getPaymentHistory(userId: string) {
+    const { data, error } = await supabase
+      .from('payment_history')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data;
+  },
+};
+
+// 실시간 구독 헬퍼
+export const realtimeHelpers = {
+  /**
+   * 특정 테이블의 실시간 변경 구독
+   */
+  subscribeToTable(
+    table: string,
+    callback: (payload: any) => void,
+    filter?: { column: string; value: string }
+  ) {
+    let channel = supabase
+      .channel(`${table}_changes`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table,
+          ...(filter && { filter: `${filter.column}=eq.${filter.value}` }),
+        },
+        callback
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  },
+
+  /**
+   * 협업 이벤트 구독 (실시간 커서, 편집 등)
+   */
+  subscribeToCollaboration(reportId: string, callback: (payload: any) => void) {
+    const channel = supabase.channel(`collaboration:${reportId}`);
+
+    channel
+      .on('broadcast', { event: 'cursor' }, callback)
+      .on('broadcast', { event: 'edit' }, callback)
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  },
+};
+
+export default supabase;

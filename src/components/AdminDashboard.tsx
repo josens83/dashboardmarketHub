@@ -34,7 +34,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  subscriptionTier: 'free' | 'premium' | 'enterprise';
+  subscriptionTier: 'free' | 'professional' | 'enterprise';
   status: 'active' | 'inactive' | 'suspended';
   registeredAt: Date;
   lastActive: Date;
@@ -52,7 +52,7 @@ const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'revenue' | 'health'>('overview');
   const [searchQuery, setSearchQuery] = useState('');
-  const [filterTier, setFilterTier] = useState<'all' | 'free' | 'premium' | 'enterprise'>('all');
+  const [filterTier, setFilterTier] = useState<'all' | 'free' | 'professional' | 'enterprise'>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'suspended'>('all');
 
   // 관리자 권한 체크
@@ -110,7 +110,7 @@ const AdminDashboard: React.FC = () => {
       id: '2',
       name: '이지은',
       email: 'jieun.lee@example.com',
-      subscriptionTier: 'premium',
+      subscriptionTier: 'professional',
       status: 'active',
       registeredAt: new Date('2024-03-22'),
       lastActive: new Date('2025-11-16'),
@@ -130,7 +130,7 @@ const AdminDashboard: React.FC = () => {
       id: '4',
       name: '최수진',
       email: 'sujin.choi@example.com',
-      subscriptionTier: 'premium',
+      subscriptionTier: 'professional',
       status: 'inactive',
       registeredAt: new Date('2024-02-05'),
       lastActive: new Date('2025-10-20'),
@@ -181,7 +181,7 @@ const AdminDashboard: React.FC = () => {
         return <span className="px-2 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-800 flex items-center gap-1">
           <Crown className="w-3 h-3" /> Enterprise
         </span>;
-      case 'premium':
+      case 'professional':
         return <span className="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 flex items-center gap-1">
           <Shield className="w-3 h-3" /> Premium
         </span>;

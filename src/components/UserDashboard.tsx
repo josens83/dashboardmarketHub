@@ -85,7 +85,7 @@ const UserDashboard: React.FC = () => {
       icon: <TrendingUp className="w-6 h-6" />,
       label: '구독 상태',
       value: user?.subscriptionTier === 'free' ? '무료' :
-             user?.subscriptionTier === 'premium' ? '프리미엄' : '엔터프라이즈',
+             user?.subscriptionTier === 'professional' ? '프리미엄' : '엔터프라이즈',
       gradient: 'from-amber-500 to-orange-500',
       textColor: 'text-amber-600 dark:text-amber-400'
     },
@@ -101,7 +101,7 @@ const UserDashboard: React.FC = () => {
             <Sparkles className="w-4 h-4 text-purple-400" />
             <span className="text-sm font-medium text-purple-600 dark:text-purple-300">
               {user?.subscriptionTier === 'free' ? '무료 플랜' :
-               user?.subscriptionTier === 'premium' ? '프리미엄 플랜' : '엔터프라이즈 플랜'}
+               user?.subscriptionTier === 'professional' ? '프리미엄 플랜' : '엔터프라이즈 플랜'}
             </span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">

@@ -32,7 +32,7 @@ interface Template {
   widgets: number;
   downloads: number;
   rating: number;
-  tier: 'free' | 'premium' | 'enterprise';
+  tier: 'free' | 'professional' | 'enterprise';
   tags: string[];
   author: string;
   createdAt: Date;
@@ -74,7 +74,7 @@ const TemplateGallery: React.FC = () => {
       widgets: 15,
       downloads: 3892,
       rating: 4.6,
-      tier: 'premium',
+      tier: 'professional',
       tags: ['마케팅', 'ROI', '캠페인', '전환율'],
       author: 'Marketing Pro',
       createdAt: new Date('2025-10-20')
@@ -90,7 +90,7 @@ const TemplateGallery: React.FC = () => {
       widgets: 10,
       downloads: 4521,
       rating: 4.7,
-      tier: 'premium',
+      tier: 'professional',
       tags: ['판매', '영업', '파이프라인', '매출'],
       author: 'Sales Expert',
       createdAt: new Date('2025-10-25')
@@ -138,7 +138,7 @@ const TemplateGallery: React.FC = () => {
       widgets: 16,
       downloads: 4123,
       rating: 4.8,
-      tier: 'premium',
+      tier: 'professional',
       tags: ['이커머스', '온라인매출', 'LTV', '주문'],
       author: 'Ecommerce Team',
       createdAt: new Date('2025-11-08')
@@ -170,7 +170,7 @@ const TemplateGallery: React.FC = () => {
       widgets: 13,
       downloads: 2987,
       rating: 4.6,
-      tier: 'premium',
+      tier: 'professional',
       tags: ['제품', '재고', '매출', '성장'],
       author: 'Product Team',
       createdAt: new Date('2025-11-12')
@@ -204,11 +204,11 @@ const TemplateGallery: React.FC = () => {
 
   const handleUseTemplate = (template: Template) => {
     const canUse = template.tier === 'free' ||
-                   (template.tier === 'premium' && (user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise')) ||
+                   (template.tier === 'professional' && (user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise')) ||
                    (template.tier === 'enterprise' && user?.subscriptionTier === 'enterprise');
 
     if (!canUse) {
-      success(`${template.tier === 'premium' ? 'Premium' : 'Enterprise'} 플랜이 필요합니다.`);
+      success(`${template.tier === 'professional' ? 'Premium' : 'Enterprise'} 플랜이 필요합니다.`);
       return;
     }
 
@@ -222,7 +222,7 @@ const TemplateGallery: React.FC = () => {
         return <span className="px-2 py-0.5 text-xs font-semibold rounded bg-amber-100 text-amber-800 flex items-center gap-1">
           <Crown className="w-3 h-3" /> Enterprise
         </span>;
-      case 'premium':
+      case 'professional':
         return <span className="px-2 py-0.5 text-xs font-semibold rounded bg-purple-100 text-purple-800 flex items-center gap-1">
           <Zap className="w-3 h-3" /> Premium
         </span>;

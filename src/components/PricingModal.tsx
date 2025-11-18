@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Check, Crown, Zap, Building } from 'lucide-react';
+import { X, Check, Crown, Zap, Building, Star } from 'lucide-react';
 import { SUBSCRIPTION_PLANS, SubscriptionTier } from '../types/subscription';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -25,13 +25,15 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
 
   const tierIcons = {
     free: Zap,
-    premium: Crown,
+    basic: Star,
+    professional: Crown,
     enterprise: Building,
   };
 
   const tierColors = {
     free: 'text-gray-600',
-    premium: 'text-yellow-600',
+    basic: 'text-blue-600',
+    professional: 'text-yellow-600',
     enterprise: 'text-purple-600',
   };
 
@@ -56,7 +58,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
           {SUBSCRIPTION_PLANS.map((plan) => {
             const Icon = tierIcons[plan.id];
             const isCurrentPlan = user?.subscriptionTier === plan.id;
-            const isPremiumPlan = plan.id === 'premium';
+            const isPremiumPlan = plan.id === 'professional';
 
             return (
               <div

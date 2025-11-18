@@ -1,4 +1,4 @@
-export type SubscriptionTier = 'free' | 'premium' | 'enterprise';
+export type SubscriptionTier = 'free' | 'basic' | 'professional' | 'enterprise';
 
 export interface User {
   id: string;
@@ -45,18 +45,38 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     },
   },
   {
-    id: 'premium',
-    name: '프리미엄',
-    price: 29000,
+    id: 'basic',
+    name: '베이직',
+    price: 19000,
     billingPeriod: 'monthly',
     features: [
       '모든 무료 기능 포함',
-      '고급 분석 및 필터링',
+      '확장된 시장 분석',
       '무제한 PDF 내보내기',
       'Excel/CSV 데이터 내보내기',
-      '무제한 비교 분석',
-      '저장된 리포트 관리',
+      '저장된 리포트 관리 (최대 50개)',
+      '기본 고객 지원',
+    ],
+    limits: {
+      pdfExports: 'unlimited',
+      dataExports: 'unlimited',
+      savedReports: 50,
+      comparisons: 'unlimited',
+    },
+  },
+  {
+    id: 'professional',
+    name: '프로페셔널',
+    price: 49000,
+    billingPeriod: 'monthly',
+    features: [
+      '모든 베이직 기능 포함',
+      '고급 분석 및 필터링',
+      '무제한 저장된 리포트',
+      '팀 협업 기능 (최대 5명)',
+      '웹훅 통합',
       '우선 고객 지원',
+      '월간 리포트',
     ],
     limits: {
       pdfExports: 'unlimited',
@@ -68,13 +88,13 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'enterprise',
     name: '엔터프라이즈',
-    price: 99000,
+    price: 149000,
     billingPeriod: 'monthly',
     features: [
-      '모든 프리미엄 기능 포함',
+      '모든 프로페셔널 기능 포함',
       'API 접근',
       '커스텀 데이터 소스 연동',
-      '팀 협업 기능',
+      '무제한 팀 협업',
       '전담 계정 매니저',
       'SLA 보장',
       '온사이트 교육',

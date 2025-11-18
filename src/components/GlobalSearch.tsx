@@ -283,7 +283,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ isOpen, onClose, onNavigate
             </div>
             {user && (
               <span className="text-purple-600 dark:text-purple-400">
-                {user.subscriptionTier === 'premium' ? '프리미엄' : user.subscriptionTier === 'enterprise' ? '엔터프라이즈' : '무료'}
+                {user.subscriptionTier === 'professional' ? '프리미엄' : user.subscriptionTier === 'enterprise' ? '엔터프라이즈' : '무료'}
               </span>
             )}
           </div>

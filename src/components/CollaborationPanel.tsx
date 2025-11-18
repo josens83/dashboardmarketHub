@@ -324,7 +324,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
     </div>
   );
 
-  const isPremiumUser = user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise';
+  const isPremiumUser = user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise';
 
   if (!isPremiumUser) {
     return (

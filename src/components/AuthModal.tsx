@@ -38,7 +38,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
     }
   };
 
-  const fillDemoCredentials = (tier: 'free' | 'premium') => {
+  const fillDemoCredentials = (tier: 'free' | 'professional') => {
     if (tier === 'free') {
       setEmail('demo@example.com');
       setPassword('demo123');
@@ -128,7 +128,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
               <span className="text-gray-400">|</span>
               <button
                 type="button"
-                onClick={() => fillDemoCredentials('premium')}
+                onClick={() => fillDemoCredentials('professional')}
                 className="text-primary-600 hover:underline"
               >
                 프리미엄 데모 계정

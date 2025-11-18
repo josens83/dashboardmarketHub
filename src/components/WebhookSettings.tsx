@@ -249,7 +249,7 @@ const WebhookSettings: React.FC = () => {
     }
   };
 
-  const isPremiumUser = user?.subscriptionTier === 'premium' || user?.subscriptionTier === 'enterprise';
+  const isPremiumUser = user?.subscriptionTier === 'professional' || user?.subscriptionTier === 'enterprise';
 
   if (!isPremiumUser) {
     return (
