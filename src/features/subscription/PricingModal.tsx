@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, Check, Crown, Zap, Building, Star } from 'lucide-react';
 import { SUBSCRIPTION_PLANS, SubscriptionTier } from '@/shared/types/subscription';
 import { useAuth } from '@/shared/contexts/AuthContext';
@@ -6,17 +6,18 @@ import { useAuth } from '@/shared/contexts/AuthContext';
 interface PricingModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCheckout?: (tier: SubscriptionTier) => void;
+  onCheckout?: (tier: SubscriptionTier, billingPeriod: 'monthly' | 'yearly') => void;
 }
 
 const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout }) => {
   const { user, upgradeTier } = useAuth();
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
 
   if (!isOpen) return null;
 
   const handleUpgrade = (tier: SubscriptionTier) => {
     if (tier !== 'free' && onCheckout) {
-      onCheckout(tier);
+      onCheckout(tier, billingPeriod);
     } else {
       upgradeTier(tier);
       onClose();
@@ -49,9 +50,36 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
 
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-2">요금제 선택</h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
             비즈니스에 맞는 최적의 플랜을 선택하세요
           </p>
+
+          {/* Billing Period Toggle */}
+          <div className="inline-flex items-center gap-3 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+            <button
+              onClick={() => setBillingPeriod('monthly')}
+              className={`px-6 py-2 rounded-md font-medium transition-all ${
+                billingPeriod === 'monthly'
+                  ? 'bg-white dark:bg-gray-800 text-purple-600 shadow-sm'
+                  : 'text-gray-600 dark:text-gray-400'
+              }`}
+            >
+              월간 결제
+            </button>
+            <button
+              onClick={() => setBillingPeriod('yearly')}
+              className={`px-6 py-2 rounded-md font-medium transition-all relative ${
+                billingPeriod === 'yearly'
+                  ? 'bg-white dark:bg-gray-800 text-purple-600 shadow-sm'
+                  : 'text-gray-600 dark:text-gray-400'
+              }`}
+            >
+              연간 결제
+              <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">
+                20% 할인
+              </span>
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -81,11 +109,29 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
                   <Icon className={`w-12 h-12 mx-auto mb-3 ${tierColors[plan.id]}`} />
                   <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold">
-                      {plan.price === 0 ? '무료' : `₩${plan.price.toLocaleString()}`}
-                    </span>
-                    {plan.price > 0 && (
-                      <span className="text-gray-600 dark:text-gray-400">/월</span>
+                    {plan.price === 0 ? (
+                      <span className="text-4xl font-bold">무료</span>
+                    ) : (
+                      <>
+                        {billingPeriod === 'yearly' && (
+                          <div className="text-sm text-gray-500 line-through mb-1">
+                            ₩{(plan.price * 12).toLocaleString()}/년
+                          </div>
+                        )}
+                        <span className="text-4xl font-bold">
+                          ₩{billingPeriod === 'yearly'
+                            ? Math.floor(plan.price * 12 * 0.8).toLocaleString()
+                            : plan.price.toLocaleString()}
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          /{billingPeriod === 'yearly' ? '년' : '월'}
+                        </span>
+                        {billingPeriod === 'yearly' && (
+                          <div className="text-sm text-green-600 dark:text-green-400 font-medium mt-1">
+                            월 ₩{Math.floor(plan.price * 0.8).toLocaleString()}로 이용하세요
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>

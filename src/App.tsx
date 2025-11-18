@@ -59,6 +59,7 @@ function AppContent() {
   const [showGlobalSearch, setShowGlobalSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [checkoutTier, setCheckoutTier] = useState<SubscriptionTier | null>(null);
+  const [checkoutBillingPeriod, setCheckoutBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
   const [unreadNotifications] = useState(2); // 데모: 읽지 않은 알림 수
 
   // 다크모드 및 초기화
@@ -69,9 +70,29 @@ function AppContent() {
       document.documentElement.classList.add('dark');
     }
 
+    // Stripe 결제 완료/취소 처리
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    const success = urlParams.get('success');
+    const canceled = urlParams.get('canceled');
+
+    if (success === 'true' && sessionId) {
+      // 결제 성공 - URL 파라미터 제거
+      window.history.replaceState({}, '', window.location.pathname);
+      setActiveSection('dashboard');
+      // TODO: 성공 토스트 메시지 표시 (ToastContext 사용)
+    } else if (canceled === 'true') {
+      // 결제 취소 - URL 파라미터 제거
+      window.history.replaceState({}, '', window.location.pathname);
+      setActiveSection('plans');
+      // TODO: 취소 메시지 표시
+    }
+
     // 로그인된 사용자는 대시보드로, 아니면 랜딩 페이지
     if (isAuthenticated) {
-      setActiveSection('dashboard');
+      if (!success && !canceled) {
+        setActiveSection('dashboard');
+      }
 
       // 온보딩 체크 (로그인된 사용자만)
       const onboardingCompleted = localStorage.getItem('onboardingCompleted');
@@ -79,7 +100,9 @@ function AppContent() {
         setShowOnboarding(true);
       }
     } else {
-      setActiveSection('landing');
+      if (!success && !canceled) {
+        setActiveSection('landing');
+      }
     }
   }, [isAuthenticated]);
 
@@ -151,13 +174,15 @@ function AppContent() {
     setShowPricingModal(true);
   };
 
-  const handleCheckout = (tier: SubscriptionTier) => {
+  const handleCheckout = (tier: SubscriptionTier, billingPeriod: 'monthly' | 'yearly') => {
     setCheckoutTier(tier);
+    setCheckoutBillingPeriod(billingPeriod);
     setActiveSection('checkout');
   };
 
   const handleCheckoutSuccess = () => {
     setCheckoutTier(null);
+    setCheckoutBillingPeriod('monthly');
     setActiveSection('dashboard');
   };
 
@@ -518,6 +543,7 @@ function AppContent() {
           {activeSection === 'checkout' && checkoutTier && (
             <CheckoutPage
               selectedTier={checkoutTier}
+              billingPeriod={checkoutBillingPeriod}
               onClose={() => setActiveSection('plans')}
               onSuccess={handleCheckoutSuccess}
             />
