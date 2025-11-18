@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Users, UserPlus, Mail, Shield, Crown, Trash2, CheckCircle, Clock, X } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useToast } from '../contexts/ToastContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
+import { useToast } from '@/shared/contexts/ToastContext';
 
 interface TeamMember {
   id: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BarChart3, TrendingUp, Shield, Zap, CheckCircle, Star, ArrowRight, Users, Clock, Award, Sparkles, Database } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
 
 interface LandingPageProps {
   onGetStarted: () => void;

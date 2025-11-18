@@ -1,7 +1,7 @@
 import React from 'react';
 import { Clock, TrendingUp, FileText, Download, BarChart3, Eye, Sparkles, ArrowRight } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useUserData } from '../contexts/UserDataContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
+import { useUserData } from '@/shared/contexts/UserDataContext';
 
 const UserDashboard: React.FC = () => {
   const { user } = useAuth();

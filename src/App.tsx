@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { Moon, Sun, Download, Menu, X, User, LogIn, LogOut, Crown, Settings, HelpCircle, Mail, FileText, Shield, Bell, Search, Users, Calendar, Code, Activity as ActivityIcon, Database, Webhook, LayoutGrid, Loader2, Link as LinkIcon } from 'lucide-react';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { UserDataProvider } from './contexts/UserDataContext';
-import { ToastProvider } from './contexts/ToastContext';
-import { LoadingProvider } from './contexts/LoadingContext';
+import { AuthProvider, useAuth } from '@/shared/contexts/AuthContext';
+import { UserDataProvider } from '@/shared/contexts/UserDataContext';
+import { ToastProvider } from '@/shared/contexts/ToastContext';
+import { LoadingProvider } from '@/shared/contexts/LoadingContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import GlobalSearch from './components/GlobalSearch';
 import NotificationCenter from './components/NotificationCenter';
@@ -16,8 +16,8 @@ import UserDashboard from './components/UserDashboard';
 import AuthModal from './components/AuthModal';
 import PricingModal from './components/PricingModal';
 import OnboardingTour from './components/OnboardingTour';
-import { exportToPDF } from './utils/pdfExport';
-import { SubscriptionTier } from './types/subscription';
+import { exportToPDF } from '@/shared/utils/pdfExport';
+import { SubscriptionTier } from '@/shared/types/subscription';
 
 // 코드 스플리팅 - 성능 최적화를 위한 Lazy Loading
 const SavedReportsPage = lazy(() => import('./components/SavedReportsPage'));

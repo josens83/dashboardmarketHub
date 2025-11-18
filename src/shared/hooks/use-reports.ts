@@ -4,10 +4,10 @@
  */
 
 import { useState, useCallback } from 'react';
-import { supabase } from '../lib/supabase';
-import { handleError, logError } from '../utils/error-handler';
+import { supabase } from '@/shared/lib/supabase';
+import { handleError, logError } from '@/shared/utils/error-handler';
 import { useToast } from './use-toast';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
 
 export interface Report {
   id: string;

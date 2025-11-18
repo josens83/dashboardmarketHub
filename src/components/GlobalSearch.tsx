@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Search, FileText, BarChart3, Settings, HelpCircle, TrendingUp, DollarSign, Building2, ArrowRight, Star } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
 
 interface SearchResult {
   id: string;

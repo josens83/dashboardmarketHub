@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { ComparisonItem, SavedReport, ActivityLog } from '../types/userdata';
+import { ComparisonItem, SavedReport, ActivityLog } from '@/shared/types/userdata';
 
 interface UserDataContextType {
   comparisonItems: ComparisonItem[];

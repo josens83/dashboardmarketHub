@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Upload, Database, Link as LinkIcon, FileJson, FileSpreadsheet, Globe, Check, X, Loader2, RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
-import { useToast } from '../contexts/ToastContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '@/shared/contexts/ToastContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
 
 interface DataSource {
   id: string;

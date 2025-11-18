@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileText, Trash2, Calendar, Eye } from 'lucide-react';
-import { useUserData } from '../contexts/UserDataContext';
+import { useUserData } from '@/shared/contexts/UserDataContext';
 
 const SavedReportsPage: React.FC = () => {
   const { savedReports, deleteReport } = useUserData();

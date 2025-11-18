@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, Mail, Plus, Trash2, CheckCircle } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useToast } from '../contexts/ToastContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
+import { useToast } from '@/shared/contexts/ToastContext';
 
 interface ScheduledReport {
   id: string;

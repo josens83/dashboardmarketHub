@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, MessageSquare, Phone, MapPin, Send } from 'lucide-react';
-import { useToast } from '../contexts/ToastContext';
+import { useToast } from '@/shared/contexts/ToastContext';
 
 const ContactPage: React.FC = () => {
   const { success } = useToast();

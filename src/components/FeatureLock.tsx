@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Lock, Crown } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
 import PricingModal from './PricingModal';
 
 interface FeatureLockProps {

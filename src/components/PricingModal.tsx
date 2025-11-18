@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Check, Crown, Zap, Building, Star } from 'lucide-react';
-import { SUBSCRIPTION_PLANS, SubscriptionTier } from '../types/subscription';
-import { useAuth } from '../contexts/AuthContext';
+import { SUBSCRIPTION_PLANS, SubscriptionTier } from '@/shared/types/subscription';
+import { useAuth } from '@/shared/contexts/AuthContext';
 
 interface PricingModalProps {
   isOpen: boolean;

@@ -8,6 +8,6 @@ export { useSupabaseQuery } from './use-supabase-query';
 export { useReports } from './use-reports';
 
 // Re-export context hooks
-export { useAuth } from '../../contexts/AuthContext';
-export { useLoading } from '../../contexts/LoadingContext';
-export { useUserData } from '../../contexts/UserDataContext';
+export { useAuth } from '@/shared/contexts/AuthContext';
+export { useLoading } from '@/shared/contexts/LoadingContext';
+export { useUserData } from '@/shared/contexts/UserDataContext';

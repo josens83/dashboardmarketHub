@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, TrendingUp, DollarSign, Package, ArrowRight } from 'lucide-react';
 import { serviceComparisons } from '../data/marketData';
-import { useUserData } from '../contexts/UserDataContext';
+import { useUserData } from '@/shared/contexts/UserDataContext';
 
 interface ComparisonToolProps {
   isOpen: boolean;

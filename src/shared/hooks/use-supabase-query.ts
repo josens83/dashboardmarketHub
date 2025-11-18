@@ -4,8 +4,8 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import { supabase } from '../lib/supabase';
-import { handleError, logError } from '../utils/error-handler';
+import { supabase } from '@/shared/lib/supabase';
+import { handleError, logError } from '@/shared/utils/error-handler';
 import { useToast } from './use-toast';
 
 export interface UseSupabaseQueryOptions<T> {

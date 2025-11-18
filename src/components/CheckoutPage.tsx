@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CreditCard, Lock, CheckCircle, ArrowLeft } from 'lucide-react';
-import { SUBSCRIPTION_PLANS, SubscriptionTier } from '../types/subscription';
-import { useToast } from '../contexts/ToastContext';
+import { SUBSCRIPTION_PLANS, SubscriptionTier } from '@/shared/types/subscription';
+import { useToast } from '@/shared/contexts/ToastContext';
 import LoadingSpinner from './LoadingSpinner';
 
 interface CheckoutPageProps {

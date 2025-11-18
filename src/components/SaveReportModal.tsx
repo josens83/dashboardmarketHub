@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Save, FileText, Calendar } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useUserData } from '../contexts/UserDataContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
+import { useUserData } from '@/shared/contexts/UserDataContext';
 
 interface SaveReportModalProps {
   isOpen: boolean;

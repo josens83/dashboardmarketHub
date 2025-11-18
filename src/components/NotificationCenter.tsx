@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Bell, CheckCircle, AlertCircle, Info, TrendingUp, X, Check, Trash2 } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
 
 export interface Notification {
   id: string;

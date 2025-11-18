@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { User, Lock, CreditCard, Bell, Trash2, Save, Mail, Building } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useToast } from '../contexts/ToastContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
+import { useToast } from '@/shared/contexts/ToastContext';
 
 const SettingsPage: React.FC = () => {
   const { user, logout } = useAuth();

@@ -1,4 +1,4 @@
-import { MarketData, ServiceComparison, IndustryDemand } from '../types';
+import { MarketData, ServiceComparison, IndustryDemand } from '@/shared/types';
 
 // 글로벌 및 국내 시장 규모 데이터 (단위: 십억 달러 / 조원)
 export const marketGrowthData: MarketData[] = [

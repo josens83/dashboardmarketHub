@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Code, Copy, Key, Book, Zap, Shield } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useToast } from '../contexts/ToastContext';
+import { useAuth } from '@/shared/contexts/AuthContext';
+import { useToast } from '@/shared/contexts/ToastContext';
 
 const APIDocumentation: React.FC = () => {
   const { user } = useAuth();
