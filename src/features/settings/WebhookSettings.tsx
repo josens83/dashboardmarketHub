@@ -215,7 +215,7 @@ const WebhookSettings: React.FC = () => {
     success('Webhook이 삭제되었습니다.');
   };
 
-  const handleTestWebhook = (_id: string) => {
+  const handleTestWebhook = (_: string) => {
     success('테스트 이벤트가 전송되었습니다.');
   };
 

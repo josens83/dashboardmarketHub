@@ -78,7 +78,7 @@ export function initSentry() {
 /**
  * Manually capture an exception
  */
-export function captureException(error: Error, context?: Record<string, any>) {
+export function captureException(error: Error, context?: Record<string, unknown>) {
   Sentry.captureException(error, {
     extra: context,
   });
@@ -101,7 +101,7 @@ export function setUser(user: { id: string; email?: string; username?: string } 
 /**
  * Add breadcrumb for debugging
  */
-export function addBreadcrumb(message: string, data?: Record<string, any>) {
+export function addBreadcrumb(message: string, data?: Record<string, unknown>) {
   Sentry.addBreadcrumb({
     message,
     data,

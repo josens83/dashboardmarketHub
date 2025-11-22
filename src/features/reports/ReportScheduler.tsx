@@ -82,7 +82,7 @@ const ReportScheduler: React.FC = () => {
 
     // Calculate next send date
     const now = new Date();
-    let nextSend = new Date();
+    const nextSend = new Date();
     nextSend.setHours(parseInt(formData.time.split(':')[0]), parseInt(formData.time.split(':')[1]), 0, 0);
 
     if (formData.frequency === 'weekly') {

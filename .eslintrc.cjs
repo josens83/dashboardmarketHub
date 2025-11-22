@@ -14,5 +14,16 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    // Gradually improve type safety - any is a warning, not an error
+    '@typescript-eslint/no-explicit-any': 'warn',
+    // Allow @ts-expect-error for intentional type workarounds
+    '@typescript-eslint/ban-ts-comment': ['error', {
+      'ts-expect-error': 'allow-with-description',
+    }],
+    // Allow unused vars that start with underscore
+    '@typescript-eslint/no-unused-vars': ['error', {
+      'argsIgnorePattern': '^_',
+      'varsIgnorePattern': '^_',
+    }],
   },
 }

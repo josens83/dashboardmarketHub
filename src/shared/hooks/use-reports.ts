@@ -34,7 +34,7 @@ export function useReports() {
 
     setLoading(true);
     try {
-      // @ts-ignore
+      // @ts-expect-error - Supabase type compatibility
       const { data, error } = await supabase
         .from('reports')
         .select('*')
@@ -68,7 +68,7 @@ export function useReports() {
 
       setLoading(true);
       try {
-        // @ts-ignore
+        // @ts-expect-error - Supabase type compatibility
         const { data, error } = await supabase
           .from('reports')
           .insert([
@@ -87,7 +87,7 @@ export function useReports() {
         if (error) throw error;
 
         // 활동 로그 기록
-        // @ts-ignore
+        // @ts-expect-error - Supabase type compatibility
         await supabase.from('activity_logs').insert([
           {
             user_id: user.id,
@@ -124,7 +124,7 @@ export function useReports() {
 
       setLoading(true);
       try {
-        // @ts-ignore
+        // @ts-expect-error - Supabase type compatibility
         const { error } = await supabase
           .from('reports')
           .update(updates)
@@ -134,7 +134,7 @@ export function useReports() {
         if (error) throw error;
 
         // 활동 로그 기록
-        // @ts-ignore
+        // @ts-expect-error - Supabase type compatibility
         await supabase.from('activity_logs').insert([
           {
             user_id: user.id,
@@ -167,7 +167,7 @@ export function useReports() {
 
       setLoading(true);
       try {
-        // @ts-ignore
+        // @ts-expect-error - Supabase type compatibility
         const { error } = await supabase
           .from('reports')
           .delete()
@@ -177,7 +177,7 @@ export function useReports() {
         if (error) throw error;
 
         // 활동 로그 기록
-        // @ts-ignore
+        // @ts-expect-error - Supabase type compatibility
         await supabase.from('activity_logs').insert([
           {
             user_id: user.id,
