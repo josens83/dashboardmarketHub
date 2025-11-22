@@ -55,25 +55,6 @@ const AdminDashboard: React.FC = () => {
   const [filterTier, setFilterTier] = useState<'all' | 'free' | 'professional' | 'enterprise'>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'suspended'>('all');
 
-  // 관리자 권한 체크
-  const isAdmin = user && ['admin@example.com', 'admin@bimarket.com'].includes(user.email);
-
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-          <Shield className="w-16 h-16 text-red-600 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            접근 권한 없음
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            관리자만 접근할 수 있는 페이지입니다.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   // Mock 시스템 통계
   const [stats] = useState<SystemStats>({
     totalUsers: 12547,
@@ -165,6 +146,25 @@ const AdminDashboard: React.FC = () => {
     { name: 'Premium', value: stats.premiumUsers, color: '#9333ea' },
     { name: 'Enterprise', value: stats.enterpriseUsers, color: '#f59e0b' }
   ];
+
+  // 관리자 권한 체크 (모든 hooks 호출 이후)
+  const isAdmin = user && ['admin@example.com', 'admin@bimarket.com'].includes(user.email);
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+          <Shield className="w-16 h-16 text-red-600 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            접근 권한 없음
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">
+            관리자만 접근할 수 있는 페이지입니다.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // 필터링된 사용자 목록
   const filteredUsers = users.filter(u => {

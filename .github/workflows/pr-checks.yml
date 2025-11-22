@@ -1,0 +1,93 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-info:
+    name: PR Information
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR stats
+        run: |
+          echo "### 📊 Pull Request Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Files changed:** $(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "**Lines added:** +$(git diff --shortstat origin/${{ github.base_ref }}...HEAD | grep -oP '\d+(?= insertion)' || echo 0)" >> $GITHUB_STEP_SUMMARY
+          echo "**Lines deleted:** -$(git diff --shortstat origin/${{ github.base_ref }}...HEAD | grep -oP '\d+(?= deletion)' || echo 0)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📁 Changed Files" >> $GITHUB_STEP_SUMMARY
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+
+  size-check:
+    name: Bundle Size Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and check size
+        run: |
+          npm run build
+          DIST_SIZE=$(du -sh dist | cut -f1)
+          echo "### 📦 Bundle Size" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total size:** $DIST_SIZE" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📂 Largest Files" >> $GITHUB_STEP_SUMMARY
+          du -ah dist | sort -rh | head -10 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+
+  quality-check:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for console.log statements
+        run: |
+          CONSOLE_LOGS=$(grep -r "console\\.log" src/ --exclude-dir=node_modules || true)
+          if [ -n "$CONSOLE_LOGS" ]; then
+            echo "⚠️ Warning: Found console.log statements in code:"
+            echo "$CONSOLE_LOGS"
+            echo "### ⚠️ Code Quality Warnings" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Found \`console.log\` statements that should be removed before merging:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$CONSOLE_LOGS" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check for TODO comments
+        run: |
+          TODO_COUNT=$(grep -r "TODO\|FIXME\|XXX" src/ --exclude-dir=node_modules | wc -l || echo 0)
+          echo "### 📝 TODO Comments" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Found **$TODO_COUNT** TODO/FIXME comments in the codebase" >> $GITHUB_STEP_SUMMARY
