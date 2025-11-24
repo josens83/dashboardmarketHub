@@ -39,7 +39,7 @@ export function useSupabaseQuery<T = any>(
     setError(null);
 
     try {
-      // @ts-expect-error - Supabase type compatibility
+      
       let query = supabase.from(options.table).select(options.select || '*');
 
       // 필터 적용

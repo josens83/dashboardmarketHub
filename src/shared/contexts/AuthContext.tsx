@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const loadUserProfile = async (supabaseUser: SupabaseUser) => {
     try {
-      // @ts-expect-error - Supabase type compatibility
+      
       const { data: profile, error: profileError } = await supabase
         .from('users')
         .select('*')
@@ -61,7 +61,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           subscription_tier: 'free' as SubscriptionTier,
         };
 
-        // @ts-expect-error - Supabase type compatibility
+        
         const { data: createdProfile, error: createError } = await supabase
           .from('users')
           .insert([newProfile])
@@ -70,7 +70,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         if (createError) throw createError;
 
-        // @ts-expect-error - Supabase type compatibility
+        
         await supabase.from('subscriptions').insert([{
           user_id: supabaseUser.id,
           tier: 'free',
@@ -87,7 +87,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           features: ['basic_analytics', 'service_comparison'],
         });
       } else {
-        // @ts-expect-error - Supabase type compatibility
+        
         const { data: subscription } = await supabase
           .from('subscriptions')
           .select('*')
@@ -146,11 +146,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const upgradeTier = async (tier: SubscriptionTier) => {
     if (!user) return;
     try {
-      // @ts-expect-error - Supabase type compatibility
+      
       await supabase.from('users').update({ subscription_tier: tier }).eq('id', user.id);
-      // @ts-expect-error - Supabase type compatibility
+      
       await supabase.from('subscriptions').update({ tier, status: 'active' }).eq('user_id', user.id);
-      // @ts-expect-error - Supabase type compatibility
+      
       await supabase.from('activity_logs').insert([{
         user_id: user.id,
         action: 'subscription_upgraded',
