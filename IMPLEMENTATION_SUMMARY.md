@@ -542,6 +542,88 @@ For issues or questions:
 
 ---
 
-**Last Updated**: 2025-11-22
-**Production Ready**: 80% (+10% from E2E tests)
-**Next Milestone**: 85% (with expanded test coverage)
+### Phase 1.7: Test Coverage Expansion ✅
+**Status:** Fully Complete
+**Production Readiness Impact:** +5%
+
+#### Implemented:
+- ✅ Expanded unit test coverage from 59% to 80.71%
+- ✅ Added 40 new tests across utilities and components
+- ✅ Installed @vitest/coverage-v8 for detailed coverage reporting
+- ✅ Fixed ErrorBoundary fallback prop support
+- ✅ Configured Vitest to exclude E2E tests
+
+#### Test Coverage Breakdown:
+**Overall Coverage: 80.71%**
+- Statements: 80.71%
+- Branch: 76.66%
+- Functions: 80.55%
+- Lines: 80.45%
+
+**Component-Level Coverage:**
+- utils: 98.68% (dataExport: 100%, error-handler: 97.72%)
+- lib/stripe: 83.33%
+- components: 77.41%
+- lib/sentry: 19.04% (initialization code)
+
+#### Test Suites (Total: 69 tests):
+1. **Stripe client tests** (10 tests)
+   - getPriceId validation
+   - getStripe initialization
+   - Price ID mapping
+
+2. **Sentry utilities tests** (8 tests)
+   - captureException with context
+   - captureMessage with levels
+   - setUser and clearUser
+   - addBreadcrumb tracking
+
+3. **Component tests** (11 tests)
+   - ErrorBoundary: render, error catching, fallback
+   - LoadingSpinner: render, sizes, message, accessibility
+   - FeatureLock: tier gating logic
+
+4. **error-handler utilities tests** (24 tests)
+   - AppError class
+   - handleSupabaseError with all error codes
+   - handleError for different error types
+   - logError with context
+   - isNetworkError and isAuthError helpers
+
+5. **dataExport utilities tests** (16 tests)
+   - exportToCSV with special characters
+   - exportToExcel wrapper
+   - prepareMarketDataForExport
+   - prepareServiceDataForExport
+   - prepareIndustryDataForExport
+
+#### Files Created:
+- `src/shared/utils/__tests__/error-handler.test.ts` (24 tests)
+- `src/shared/utils/__tests__/dataExport.test.ts` (16 tests)
+- Coverage reports: HTML, JSON, text formats
+
+#### Files Modified:
+- `src/shared/components/ErrorBoundary.tsx` - Added fallback prop support
+- `src/shared/components/__tests__/LoadingSpinner.test.tsx` - Fixed prop names
+- `vitest.config.ts` - Added E2E test exclusion
+- `.gitignore` - Added coverage directory
+- `package.json` - Added @vitest/coverage-v8
+
+#### Coverage Goals Met:
+- ✅ Target: 70%+ coverage
+- ✅ Achieved: 80.71% (+21.34%p from 59.37%)
+- ✅ All 69 tests passing
+- ✅ No flaky tests
+- ✅ Fast execution (< 6 seconds)
+
+#### Remaining Opportunities:
+- Add tests for React hooks (use-auth, use-supabase-query)
+- Add tests for context providers (AuthContext, ToastContext)
+- Add tests for WebSocket client
+- Increase Sentry initialization coverage (currently 19%)
+
+---
+
+**Last Updated**: 2025-11-24
+**Production Ready**: 85% (+5% from expanded test coverage)
+**Next Milestone**: 90% (with production deployment)
