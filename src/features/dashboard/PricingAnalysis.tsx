@@ -157,7 +157,7 @@ const PricingAnalysis: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">연간 비용</p>
-            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            <p className="text-2xl font-bold text-sapphire-600 dark:text-sapphire-400">
               ${roiData.annualCost.toLocaleString()}
             </p>
           </div>
@@ -169,9 +169,9 @@ const PricingAnalysis: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+          <div className="p-4 bg-brand-50 dark:bg-purple-900/20 rounded-lg">
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">ROI</p>
-            <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+            <p className="text-2xl font-bold text-brand-600 dark:text-brand-400">
               {roiData.roi.toFixed(0)}%
             </p>
           </div>

@@ -11,7 +11,7 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={onClose}
-          className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 mb-6"
+          className="flex items-center gap-2 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 mb-6"
         >
           <ArrowLeft className="w-5 h-5" />
           돌아가기
@@ -19,7 +19,7 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
           <div className="flex items-center gap-3 mb-6">
-            <FileText className="w-8 h-8 text-purple-600" />
+            <FileText className="w-8 h-8 text-brand-600" />
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               이용약관
             </h1>

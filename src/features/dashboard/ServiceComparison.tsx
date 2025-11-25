@@ -28,7 +28,7 @@ const ServiceComparison: React.FC = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setShowComparison(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors"
           >
             <GitCompare className="w-4 h-4" />
             <span className="hidden md:inline">비교 도구</span>

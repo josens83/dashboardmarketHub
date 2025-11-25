@@ -98,7 +98,7 @@ const ContactPage: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                       placeholder="홍길동"
                     />
                   </div>
@@ -113,7 +113,7 @@ const ContactPage: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -128,7 +128,7 @@ const ContactPage: React.FC = () => {
                     value={formData.category}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                   >
                     <option value="general">일반 문의</option>
                     <option value="technical">기술 지원</option>
@@ -148,7 +148,7 @@ const ContactPage: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                     placeholder="문의 제목을 입력하세요"
                   />
                 </div>
@@ -163,7 +163,7 @@ const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white resize-none"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white resize-none"
                     placeholder="문의 내용을 자세히 작성해주세요..."
                   />
                 </div>
@@ -171,7 +171,7 @@ const ContactPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-brand-600 text-white rounded-lg font-semibold hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>처리 중...</>
@@ -195,14 +195,14 @@ const ContactPage: React.FC = () => {
               <div className="space-y-6">
                 {contactMethods.map((method, index) => (
                   <div key={index} className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-purple-600 dark:text-purple-400 flex-shrink-0">
+                    <div className="w-12 h-12 bg-brand-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-brand-600 dark:text-brand-400 flex-shrink-0">
                       {method.icon}
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
                         {method.title}
                       </h4>
-                      <p className="text-purple-600 dark:text-purple-400 mb-1">
+                      <p className="text-brand-600 dark:text-brand-400 mb-1">
                         {method.content}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -214,7 +214,7 @@ const ContactPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
+            <div className="bg-brand-50 dark:bg-purple-900/20 rounded-lg p-6">
               <h3 className="font-bold text-gray-900 dark:text-white mb-3">
                 영업시간
               </h3>
@@ -237,14 +237,14 @@ const ContactPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg p-6 text-white">
+            <div className="bg-gradient-to-br from-brand-600 to-indigo-600 rounded-lg p-6 text-white">
               <h3 className="font-bold mb-2">
                 빠른 답변이 필요하신가요?
               </h3>
-              <p className="text-sm text-purple-100 mb-4">
+              <p className="text-sm text-brand-100 mb-4">
                 프리미엄 플랜 이상에서는 라이브 채팅과 우선 지원을 제공합니다.
               </p>
-              <button className="w-full py-2 bg-white text-purple-700 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+              <button className="w-full py-2 bg-white text-brand-700 rounded-lg font-semibold hover:bg-brand-50 transition-colors">
                 플랜 업그레이드
               </button>
             </div>

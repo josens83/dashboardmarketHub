@@ -258,7 +258,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
   const renderComment = (comment: Comment, isReply = false) => (
     <div key={comment.id} className={`${isReply ? 'ml-12 mt-3' : 'mb-4'}`}>
       <div className="flex gap-3">
-        <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-purple-600 font-semibold text-sm flex-shrink-0">
+        <div className="w-8 h-8 rounded-full bg-brand-100 dark:bg-purple-900 flex items-center justify-center text-brand-600 font-semibold text-sm flex-shrink-0">
           {comment.userName.charAt(0)}
         </div>
         <div className="flex-1">
@@ -297,8 +297,8 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
               onClick={() => handleLikeComment(comment.id)}
               className={`flex items-center gap-1 text-xs ${
                 comment.likedBy.includes(user?.email || '')
-                  ? 'text-purple-600 font-semibold'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-purple-600'
+                  ? 'text-brand-600 font-semibold'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-brand-600'
               }`}
             >
               <ThumbsUp className="w-3 h-3" />
@@ -307,7 +307,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
             {!isReply && (
               <button
                 onClick={() => setReplyingTo(comment.id)}
-                className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-purple-600"
+                className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-brand-600"
               >
                 <Reply className="w-3 h-3" />
                 답글
@@ -329,14 +329,14 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
   if (!isPremiumUser) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-6 max-w-md">
-        <MessageSquare className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+        <MessageSquare className="w-12 h-12 text-brand-600 mx-auto mb-4" />
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-2">
           협업 기능은 Premium 이상 플랜에서 사용 가능합니다
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 text-center mb-6">
           댓글, 공유, 실시간 협업 기능을 사용하려면 업그레이드하세요.
         </p>
-        <button className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+        <button className="w-full bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700">
           플랜 업그레이드
         </button>
       </div>
@@ -348,7 +348,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-purple-600" />
+          <MessageSquare className="w-5 h-5 text-brand-600" />
           협업
         </h3>
         {onClose && (
@@ -364,7 +364,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
           onClick={() => setActiveTab('comments')}
           className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
             activeTab === 'comments'
-              ? 'text-purple-600 border-b-2 border-purple-600'
+              ? 'text-brand-600 border-b-2 border-brand-600'
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
           }`}
         >
@@ -375,7 +375,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
           onClick={() => setActiveTab('share')}
           className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
             activeTab === 'share'
-              ? 'text-purple-600 border-b-2 border-purple-600'
+              ? 'text-brand-600 border-b-2 border-brand-600'
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
           }`}
         >
@@ -394,7 +394,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                 <div className="mb-2 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <Reply className="w-4 h-4" />
                   <span>답글 작성 중</span>
-                  <button onClick={() => setReplyingTo(null)} className="ml-auto text-purple-600 hover:text-purple-700">
+                  <button onClick={() => setReplyingTo(null)} className="ml-auto text-brand-600 hover:text-brand-700">
                     취소
                   </button>
                 </div>
@@ -404,7 +404,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                   value={newComment}
                   onChange={(e) => handleCommentChange(e.target.value)}
                   placeholder="댓글을 입력하세요... (@로 멘션)"
-                  className="w-full px-3 py-2 pr-24 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className="w-full px-3 py-2 pr-24 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   rows={3}
                 />
 
@@ -417,7 +417,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                         onClick={() => handleMention(member)}
                         className="w-full px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center gap-2"
                       >
-                        <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-purple-600 text-xs font-semibold">
+                        <div className="w-6 h-6 rounded-full bg-brand-100 dark:bg-purple-900 flex items-center justify-center text-brand-600 text-xs font-semibold">
                           {member.name.charAt(0)}
                         </div>
                         <div>
@@ -432,7 +432,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                 <div className="absolute bottom-2 right-2 flex items-center gap-2">
                   <button
                     onClick={() => setShowMentions(!showMentions)}
-                    className="p-1.5 text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 rounded"
+                    className="p-1.5 text-gray-400 hover:text-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 rounded"
                     title="멘션"
                   >
                     <AtSign className="w-4 h-4" />
@@ -440,7 +440,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                   <button
                     onClick={handleAddComment}
                     disabled={!newComment.trim()}
-                    className="px-3 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 text-sm"
+                    className="px-3 py-1.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 text-sm"
                   >
                     <Send className="w-4 h-4" />
                     전송
@@ -478,7 +478,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                 />
                 <button
                   onClick={handleCopyLink}
-                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+                  className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 flex items-center gap-2"
                 >
                   <Copy className="w-4 h-4" />
                   복사
@@ -504,8 +504,8 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                         key={option.value}
                         className={`flex items-center gap-3 p-3 border-2 rounded-lg cursor-pointer transition-colors ${
                           shareSettings.visibility === option.value
-                            ? 'border-purple-600 bg-purple-50 dark:bg-purple-900'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-purple-300'
+                            ? 'border-brand-600 bg-brand-50 dark:bg-purple-900'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-brand-300'
                         }`}
                       >
                         <input
@@ -514,7 +514,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                           value={option.value}
                           checked={shareSettings.visibility === option.value}
                           onChange={(e) => setShareSettings({ ...shareSettings, visibility: e.target.value as any })}
-                          className="text-purple-600"
+                          className="text-brand-600"
                         />
                         <option.icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                         <div className="flex-1">
@@ -531,7 +531,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                     type="checkbox"
                     checked={shareSettings.allowComments}
                     onChange={(e) => setShareSettings({ ...shareSettings, allowComments: e.target.checked })}
-                    className="rounded text-purple-600"
+                    className="rounded text-brand-600"
                   />
                   <MessageSquare className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                   <span className="text-sm text-gray-900 dark:text-white">댓글 허용</span>
@@ -542,7 +542,7 @@ const CollaborationPanel: React.FC<CollaborationPanelProps> = ({
                     type="checkbox"
                     checked={shareSettings.allowDownload}
                     onChange={(e) => setShareSettings({ ...shareSettings, allowDownload: e.target.checked })}
-                    className="rounded text-purple-600"
+                    className="rounded text-brand-600"
                   />
                   <Link className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                   <span className="text-sm text-gray-900 dark:text-white">다운로드 허용</span>

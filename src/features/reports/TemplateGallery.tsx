@@ -223,7 +223,7 @@ const TemplateGallery: React.FC = () => {
           <Crown className="w-3 h-3" /> Enterprise
         </span>;
       case 'professional':
-        return <span className="px-2 py-0.5 text-xs font-semibold rounded bg-purple-100 text-purple-800 flex items-center gap-1">
+        return <span className="px-2 py-0.5 text-xs font-semibold rounded bg-brand-100 text-purple-800 flex items-center gap-1">
           <Zap className="w-3 h-3" /> Premium
         </span>;
       default:
@@ -252,7 +252,7 @@ const TemplateGallery: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                <LayoutGrid className="w-8 h-8 text-purple-600" />
+                <LayoutGrid className="w-8 h-8 text-brand-600" />
                 템플릿 갤러리
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -304,7 +304,7 @@ const TemplateGallery: React.FC = () => {
                 onClick={() => setSelectedCategory(cat.value as any)}
                 className={`px-4 py-2 rounded-lg whitespace-nowrap flex items-center gap-2 transition-colors ${
                   selectedCategory === cat.value
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-brand-600 text-white'
                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
@@ -331,8 +331,8 @@ const TemplateGallery: React.FC = () => {
               className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow"
             >
               {/* Preview Image */}
-              <div className="h-48 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900 dark:to-blue-900 flex items-center justify-center relative">
-                <div className="text-purple-400 opacity-20">
+              <div className="h-48 bg-gradient-to-br from-brand-50 to-blue-50 dark:from-purple-900 dark:to-blue-900 flex items-center justify-center relative">
+                <div className="text-brand-400 opacity-20">
                   {template.icon}
                 </div>
                 <div className="absolute top-3 right-3 flex gap-2">
@@ -392,7 +392,7 @@ const TemplateGallery: React.FC = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleUseTemplate(template)}
-                    className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center justify-center gap-2"
+                    className="flex-1 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 flex items-center justify-center gap-2"
                   >
                     <Download className="w-4 h-4" />
                     사용하기

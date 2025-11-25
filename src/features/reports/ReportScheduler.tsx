@@ -177,7 +177,7 @@ const ReportScheduler: React.FC = () => {
   if (user?.subscriptionTier === 'free') {
     return (
       <div className="max-w-4xl mx-auto">
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl p-8 text-white text-center">
+        <div className="bg-gradient-to-br from-sapphire-600 to-indigo-600 rounded-xl p-8 text-white text-center">
           <Calendar className="w-16 h-16 mx-auto mb-4 opacity-90" />
           <h2 className="text-3xl font-bold mb-3">자동 리포트 스케줄링</h2>
           <p className="text-lg mb-6 text-blue-100">
@@ -228,7 +228,7 @@ const ReportScheduler: React.FC = () => {
       <div className="mb-6">
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
         >
           <Plus className="w-5 h-5" />
           새 스케줄 만들기
@@ -299,7 +299,7 @@ const ReportScheduler: React.FC = () => {
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     schedule.enabled
                       ? 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
-                      : 'bg-purple-600 text-white hover:bg-purple-700'
+                      : 'bg-brand-600 text-white hover:bg-brand-700'
                   }`}
                 >
                   {schedule.enabled ? '일시중지' : '활성화'}
@@ -346,7 +346,7 @@ const ReportScheduler: React.FC = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="주간 시장 동향 리포트"
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                 />
               </div>
 
@@ -357,7 +357,7 @@ const ReportScheduler: React.FC = () => {
                 <select
                   value={formData.reportType}
                   onChange={(e) => setFormData({ ...formData, reportType: e.target.value as any })}
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                 >
                   <option value="market">시장 개요</option>
                   <option value="service">서비스 비교</option>
@@ -373,7 +373,7 @@ const ReportScheduler: React.FC = () => {
                 <select
                   value={formData.frequency}
                   onChange={(e) => setFormData({ ...formData, frequency: e.target.value as any })}
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                 >
                   <option value="daily">매일</option>
                   <option value="weekly">매주</option>
@@ -389,7 +389,7 @@ const ReportScheduler: React.FC = () => {
                   <select
                     value={formData.dayOfWeek}
                     onChange={(e) => setFormData({ ...formData, dayOfWeek: parseInt(e.target.value) })}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                   >
                     <option value="0">일요일</option>
                     <option value="1">월요일</option>
@@ -413,7 +413,7 @@ const ReportScheduler: React.FC = () => {
                     max="31"
                     value={formData.dayOfMonth}
                     onChange={(e) => setFormData({ ...formData, dayOfMonth: parseInt(e.target.value) })}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                   />
                 </div>
               )}
@@ -426,7 +426,7 @@ const ReportScheduler: React.FC = () => {
                   type="time"
                   value={formData.time}
                   onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                 />
               </div>
 
@@ -439,7 +439,7 @@ const ReportScheduler: React.FC = () => {
                   value={formData.recipients}
                   onChange={(e) => setFormData({ ...formData, recipients: e.target.value })}
                   placeholder="kim@company.com, lee@company.com"
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                 />
               </div>
 
@@ -450,7 +450,7 @@ const ReportScheduler: React.FC = () => {
                 <select
                   value={formData.format}
                   onChange={(e) => setFormData({ ...formData, format: e.target.value as any })}
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
                 >
                   <option value="pdf">PDF</option>
                   <option value="excel">Excel</option>
@@ -467,7 +467,7 @@ const ReportScheduler: React.FC = () => {
                 </button>
                 <button
                   onClick={handleCreate}
-                  className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  className="flex-1 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
                 >
                   스케줄 만들기
                 </button>

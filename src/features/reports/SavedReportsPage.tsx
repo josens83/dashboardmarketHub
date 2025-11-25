@@ -29,7 +29,7 @@ const SavedReportsPage: React.FC = () => {
     const colors = {
       market: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
       service: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
-      industry: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300',
+      industry: 'bg-brand-100 text-purple-800 dark:bg-purple-900/30 dark:text-brand-300',
       comparison: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300',
     };
     return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';

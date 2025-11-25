@@ -255,14 +255,14 @@ const WebhookSettings: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-          <Webhook className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+          <Webhook className="w-16 h-16 text-brand-600 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             Webhook은 Premium 이상 플랜에서 사용 가능합니다
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             외부 시스템과 자동화 통합을 위해 프리미엄 또는 엔터프라이즈 플랜으로 업그레이드하세요.
           </p>
-          <button className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-medium">
+          <button className="w-full bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-medium">
             플랜 업그레이드
           </button>
         </div>
@@ -278,7 +278,7 @@ const WebhookSettings: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                <Webhook className="w-8 h-8 text-purple-600" />
+                <Webhook className="w-8 h-8 text-brand-600" />
                 Webhook 및 통합
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -287,7 +287,7 @@ const WebhookSettings: React.FC = () => {
             </div>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
             >
               <Plus className="w-4 h-4" />
               Webhook 추가
@@ -306,7 +306,7 @@ const WebhookSettings: React.FC = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`px-4 py-2 font-medium text-sm flex items-center gap-2 border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-purple-600 text-purple-600'
+                    ? 'border-brand-600 text-brand-600'
                     : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
               >
@@ -338,7 +338,7 @@ const WebhookSettings: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleTestWebhook(webhook.id)}
-                      className="p-2 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 rounded-lg"
+                      className="p-2 text-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 rounded-lg"
                       title="테스트"
                     >
                       <PlayCircle className="w-5 h-5" />
@@ -363,7 +363,7 @@ const WebhookSettings: React.FC = () => {
                     {webhook.events.map(event => (
                       <span
                         key={event}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100"
+                        className="px-3 py-1 text-xs font-medium rounded-full bg-brand-100 text-purple-800 dark:bg-purple-900 dark:text-brand-100"
                       >
                         {event}
                       </span>
@@ -389,7 +389,7 @@ const WebhookSettings: React.FC = () => {
                     </button>
                     <button
                       onClick={() => copySecret(webhook.secret)}
-                      className="p-2 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 rounded-lg"
+                      className="p-2 text-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 rounded-lg"
                     >
                       <Copy className="w-5 h-5" />
                     </button>
@@ -424,7 +424,7 @@ const WebhookSettings: React.FC = () => {
                 <p className="text-gray-600 dark:text-gray-400">등록된 Webhook이 없습니다</p>
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="mt-4 text-purple-600 hover:text-purple-700 font-medium"
+                  className="mt-4 text-brand-600 hover:text-brand-700 font-medium"
                 >
                   첫 Webhook 만들기
                 </button>
@@ -443,7 +443,7 @@ const WebhookSettings: React.FC = () => {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg text-purple-600">
+                    <div className="p-3 bg-brand-100 dark:bg-purple-900 rounded-lg text-brand-600">
                       {integration.icon}
                     </div>
                     <div>
@@ -462,7 +462,7 @@ const WebhookSettings: React.FC = () => {
                       미연동
                     </span>
                   )}
-                  <button className="px-4 py-2 text-sm font-medium text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 rounded-lg">
+                  <button className="px-4 py-2 text-sm font-medium text-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 rounded-lg">
                     {integration.configured ? '설정' : '연동하기'}
                   </button>
                 </div>
@@ -583,7 +583,7 @@ const WebhookSettings: React.FC = () => {
                             });
                           }
                         }}
-                        className="rounded text-purple-600"
+                        className="rounded text-brand-600"
                       />
                       <div className="flex-1">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">{event.label}</div>
@@ -603,7 +603,7 @@ const WebhookSettings: React.FC = () => {
               </button>
               <button
                 onClick={handleCreateWebhook}
-                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
               >
                 생성하기
               </button>

@@ -228,12 +228,12 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ isOpen, onClose, onNavigate
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`w-full flex items-center gap-4 px-4 py-3 transition-colors ${
                     index === selectedIndex
-                      ? 'bg-purple-50 dark:bg-purple-900/20 border-l-2 border-purple-600'
+                      ? 'bg-brand-50 dark:bg-purple-900/20 border-l-2 border-brand-600'
                       : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
                   }`}
                 >
                   <div className={`flex-shrink-0 ${
-                    index === selectedIndex ? 'text-purple-600' : 'text-gray-400'
+                    index === selectedIndex ? 'text-brand-600' : 'text-gray-400'
                   }`}>
                     {result.icon}
                   </div>
@@ -246,7 +246,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ isOpen, onClose, onNavigate
                     </div>
                   </div>
                   {index === selectedIndex && (
-                    <ArrowRight className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-brand-600 flex-shrink-0" />
                   )}
                 </button>
               ))}
@@ -282,7 +282,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ isOpen, onClose, onNavigate
               </span>
             </div>
             {user && (
-              <span className="text-purple-600 dark:text-purple-400">
+              <span className="text-brand-600 dark:text-brand-400">
                 {user.subscriptionTier === 'professional' ? '프리미엄' : user.subscriptionTier === 'enterprise' ? '엔터프라이즈' : '무료'}
               </span>
             )}

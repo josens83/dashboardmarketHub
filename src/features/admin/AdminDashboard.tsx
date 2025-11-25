@@ -182,7 +182,7 @@ const AdminDashboard: React.FC = () => {
           <Crown className="w-3 h-3" /> Enterprise
         </span>;
       case 'professional':
-        return <span className="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 flex items-center gap-1">
+        return <span className="px-2 py-1 text-xs font-semibold rounded-full bg-brand-100 text-purple-800 flex items-center gap-1">
           <Shield className="w-3 h-3" /> Premium
         </span>;
       default:
@@ -248,7 +248,7 @@ const AdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                <Shield className="w-8 h-8 text-purple-600" />
+                <Shield className="w-8 h-8 text-brand-600" />
                 관리자 대시보드
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -274,7 +274,7 @@ const AdminDashboard: React.FC = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`px-4 py-2 font-medium text-sm flex items-center gap-2 border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-purple-600 text-purple-600'
+                    ? 'border-brand-600 text-brand-600'
                     : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
               >
@@ -304,8 +304,8 @@ const AdminDashboard: React.FC = () => {
                       12.5% 증가
                     </p>
                   </div>
-                  <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                    <Users className="w-8 h-8 text-purple-600" />
+                  <div className="p-3 bg-brand-100 dark:bg-purple-900 rounded-lg">
+                    <Users className="w-8 h-8 text-brand-600" />
                   </div>
                 </div>
               </div>
@@ -341,7 +341,7 @@ const AdminDashboard: React.FC = () => {
                     </p>
                   </div>
                   <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                    <TrendingUp className="w-8 h-8 text-blue-600" />
+                    <TrendingUp className="w-8 h-8 text-sapphire-600" />
                   </div>
                 </div>
               </div>
@@ -449,7 +449,7 @@ const AdminDashboard: React.FC = () => {
                 </select>
                 <button
                   onClick={exportUserData}
-                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+                  className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 flex items-center gap-2"
                 >
                   <Download className="w-4 h-4" />
                   내보내기
@@ -538,7 +538,7 @@ const AdminDashboard: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-semibold text-gray-900 dark:text-white">Premium 티어</h4>
-                  <Shield className="w-5 h-5 text-purple-600" />
+                  <Shield className="w-5 h-5 text-brand-600" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.premiumUsers.toLocaleString()}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">사용자</p>
@@ -583,7 +583,7 @@ const AdminDashboard: React.FC = () => {
                     <p className="mt-2 text-sm text-green-600">정상</p>
                   </div>
                   <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                    <Activity className="w-8 h-8 text-blue-600" />
+                    <Activity className="w-8 h-8 text-sapphire-600" />
                   </div>
                 </div>
               </div>
@@ -595,8 +595,8 @@ const AdminDashboard: React.FC = () => {
                     <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{health.activeSessions.toLocaleString()}</p>
                     <p className="mt-2 text-sm text-green-600">정상</p>
                   </div>
-                  <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                    <Users className="w-8 h-8 text-purple-600" />
+                  <div className="p-3 bg-brand-100 dark:bg-purple-900 rounded-lg">
+                    <Users className="w-8 h-8 text-brand-600" />
                   </div>
                 </div>
               </div>

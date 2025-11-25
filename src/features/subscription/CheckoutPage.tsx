@@ -91,7 +91,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
         <button
           onClick={onClose}
           disabled={isProcessing}
-          className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 mb-6 disabled:opacity-50"
+          className="flex items-center gap-2 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 mb-6 disabled:opacity-50"
         >
           <ArrowLeft className="w-5 h-5" />
           뒤로 가기
@@ -99,11 +99,11 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-6">
+          <div className="bg-gradient-to-r from-brand-600 to-indigo-600 px-8 py-6">
             <h2 className="text-2xl font-bold text-white mb-2">
               {plan.name} 플랜 구독
             </h2>
-            <p className="text-purple-100">
+            <p className="text-brand-100">
               안전하고 빠른 Stripe 결제로 바로 시작하세요
             </p>
           </div>
@@ -126,7 +126,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-3xl font-bold text-purple-600">
+                    <p className="text-3xl font-bold text-brand-600">
                       ₩{displayPrice.toLocaleString()}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -169,7 +169,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
               </h3>
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="flex items-start gap-3">
-                  <Lock className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <Lock className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       SSL 암호화
@@ -180,7 +180,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CreditCard className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <CreditCard className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       Stripe 결제
@@ -191,7 +191,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       언제든 취소 가능
@@ -208,7 +208,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
             <button
               onClick={handleCheckout}
               disabled={isProcessing}
-              className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-indigo-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-brand-600 to-indigo-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-brand-700 hover:to-indigo-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isProcessing ? (
                 <>
@@ -226,11 +226,11 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
             {/* Terms */}
             <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
               결제를 진행하시면{' '}
-              <a href="/terms" className="text-purple-600 hover:underline">
+              <a href="/terms" className="text-brand-600 hover:underline">
                 이용약관
               </a>
               과{' '}
-              <a href="/privacy" className="text-purple-600 hover:underline">
+              <a href="/privacy" className="text-brand-600 hover:underline">
                 개인정보처리방침
               </a>
               에 동의하는 것으로 간주됩니다.

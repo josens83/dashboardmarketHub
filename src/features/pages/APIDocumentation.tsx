@@ -159,7 +159,7 @@ axios.get('https://api.dashboardmarkethub.com/v1/market/overview', config)
 
       {/* API Key */}
       {user && (
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg p-6 mb-8 text-white">
+        <div className="bg-gradient-to-r from-brand-600 to-indigo-600 rounded-lg p-6 mb-8 text-white">
           <div className="flex items-center gap-3 mb-3">
             <Key className="w-6 h-6" />
             <h3 className="text-xl font-semibold">API Key</h3>
@@ -173,7 +173,7 @@ axios.get('https://api.dashboardmarkethub.com/v1/market/overview', config)
               <Copy className="w-5 h-5" />
             </button>
           </div>
-          <p className="text-purple-100 text-sm mt-3">
+          <p className="text-brand-100 text-sm mt-3">
             ⚠️ API Key는 안전하게 보관하세요. 공개 저장소에 커밋하지 마세요.
           </p>
         </div>
@@ -193,7 +193,7 @@ axios.get('https://api.dashboardmarkethub.com/v1/market/overview', config)
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${
                 activeTab === tab.id
-                  ? 'border-purple-600 text-purple-600'
+                  ? 'border-brand-600 text-brand-600'
                   : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
               }`}
             >
@@ -341,7 +341,7 @@ axios.get('https://api.dashboardmarkethub.com/v1/market/overview', config)
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                       {endpoint.params.map((param, pidx) => (
                         <tr key={pidx}>
-                          <td className="px-4 py-2 font-mono text-purple-600">{param.name}</td>
+                          <td className="px-4 py-2 font-mono text-brand-600">{param.name}</td>
                           <td className="px-4 py-2 font-mono text-gray-600 dark:text-gray-400">{param.type}</td>
                           <td className="px-4 py-2">
                             <span className={`px-2 py-0.5 rounded text-xs font-semibold ${
@@ -390,7 +390,7 @@ axios.get('https://api.dashboardmarkethub.com/v1/market/overview', config)
                 </h3>
                 <button
                   onClick={() => copyToClipboard(code, '코드')}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors text-sm"
                 >
                   <Copy className="w-4 h-4" />
                   복사

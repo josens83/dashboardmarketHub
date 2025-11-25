@@ -218,7 +218,7 @@ const DataExportCenter: React.FC = () => {
       case 'excel':
         return <FileSpreadsheet className="w-5 h-5 text-green-600" />;
       case 'json':
-        return <File className="w-5 h-5 text-blue-600" />;
+        return <File className="w-5 h-5 text-sapphire-600" />;
       case 'pdf':
         return <FileText className="w-5 h-5 text-red-600" />;
       default:
@@ -236,7 +236,7 @@ const DataExportCenter: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                <Download className="w-8 h-8 text-purple-600" />
+                <Download className="w-8 h-8 text-brand-600" />
                 데이터 관리 센터
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -259,7 +259,7 @@ const DataExportCenter: React.FC = () => {
                 disabled={tab.enterprise && !isEnterpriseUser}
                 className={`px-4 py-2 font-medium text-sm flex items-center gap-2 border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-purple-600 text-purple-600'
+                    ? 'border-brand-600 text-brand-600'
                     : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                 } ${tab.enterprise && !isEnterpriseUser ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
@@ -310,8 +310,8 @@ const DataExportCenter: React.FC = () => {
                         onClick={() => setSelectedFormat(format)}
                         className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
                           selectedFormat === format
-                            ? 'border-purple-600 bg-purple-50 dark:bg-purple-900'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-purple-300'
+                            ? 'border-brand-600 bg-brand-50 dark:bg-purple-900'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-brand-300'
                         }`}
                       >
                         {getFormatIcon(format)}
@@ -340,7 +340,7 @@ const DataExportCenter: React.FC = () => {
                             setSelectedFields([]);
                           }
                         }}
-                        className="rounded text-purple-600"
+                        className="rounded text-brand-600"
                       />
                       <span className="text-sm text-gray-900 dark:text-white font-medium">전체 필드</span>
                     </label>
@@ -361,7 +361,7 @@ const DataExportCenter: React.FC = () => {
                                 setSelectedFields(selectedFields.filter(f => f !== field));
                               }
                             }}
-                            className="rounded text-purple-600"
+                            className="rounded text-brand-600"
                           />
                           <span className="text-sm text-gray-900 dark:text-white">{field}</span>
                         </label>
@@ -393,7 +393,7 @@ const DataExportCenter: React.FC = () => {
                   <button
                     onClick={handleExport}
                     disabled={isExporting}
-                    className="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
+                    className="flex-1 bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
                   >
                     {isExporting ? (
                       <>
@@ -438,14 +438,14 @@ const DataExportCenter: React.FC = () => {
                   />
                   <label
                     htmlFor="file-upload"
-                    className="inline-block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 cursor-pointer"
+                    className="inline-block bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 cursor-pointer"
                   >
                     파일 선택
                   </label>
                   {importFile && (
-                    <div className="mt-4 p-3 bg-purple-50 dark:bg-purple-900 rounded-lg inline-flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-purple-600" />
-                      <span className="text-sm text-purple-900 dark:text-purple-100">{importFile.name}</span>
+                    <div className="mt-4 p-3 bg-brand-50 dark:bg-purple-900 rounded-lg inline-flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-brand-600" />
+                      <span className="text-sm text-purple-900 dark:text-brand-100">{importFile.name}</span>
                     </div>
                   )}
                 </div>
@@ -453,7 +453,7 @@ const DataExportCenter: React.FC = () => {
                 {/* Import Instructions */}
                 <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
                   <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
+                    <AlertCircle className="w-5 h-5 text-sapphire-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-blue-900 dark:text-blue-100 mb-2">
                         가져오기 안내
@@ -472,7 +472,7 @@ const DataExportCenter: React.FC = () => {
                 <button
                   onClick={handleImport}
                   disabled={!importFile}
-                  className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
+                  className="w-full bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
                 >
                   <Upload className="w-5 h-5" />
                   데이터 가져오기
@@ -508,7 +508,7 @@ const DataExportCenter: React.FC = () => {
                     <div className="flex items-center gap-3">
                       {getStatusBadge(item.status)}
                       {item.status === 'completed' && (
-                        <button className="p-2 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 rounded-lg">
+                        <button className="p-2 text-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 rounded-lg">
                           <Download className="w-5 h-5" />
                         </button>
                       )}
@@ -526,7 +526,7 @@ const DataExportCenter: React.FC = () => {
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">예약된 내보내기</h2>
-                <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center gap-2">
+                <button className="bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   새 예약 추가
                 </button>
@@ -541,7 +541,7 @@ const DataExportCenter: React.FC = () => {
                   <p className="text-gray-600 dark:text-gray-400 mb-6">
                     예약된 자동 내보내기는 Enterprise 플랜에서 사용 가능합니다.
                   </p>
-                  <button className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
+                  <button className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700">
                     Enterprise로 업그레이드
                   </button>
                 </div>
@@ -553,7 +553,7 @@ const DataExportCenter: React.FC = () => {
                       className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-600 rounded-lg"
                     >
                       <div className="flex items-center gap-4">
-                        <Calendar className="w-5 h-5 text-purple-600" />
+                        <Calendar className="w-5 h-5 text-brand-600" />
                         <div>
                           <h3 className="font-medium text-gray-900 dark:text-white">{item.name}</h3>
                           <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mt-1">

@@ -208,9 +208,9 @@ const DataConnector: React.FC = () => {
       case 'csv':
         return <FileSpreadsheet className="w-5 h-5 text-green-600" />;
       case 'json':
-        return <FileJson className="w-5 h-5 text-blue-600" />;
+        return <FileJson className="w-5 h-5 text-sapphire-600" />;
       case 'api':
-        return <Globe className="w-5 h-5 text-purple-600" />;
+        return <Globe className="w-5 h-5 text-brand-600" />;
       case 'database':
         return <Database className="w-5 h-5 text-orange-600" />;
     }
@@ -236,7 +236,7 @@ const DataConnector: React.FC = () => {
                 onClick={() => setActiveTab('sources')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'sources'
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-brand-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -247,7 +247,7 @@ const DataConnector: React.FC = () => {
                 onClick={() => setActiveTab('upload')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'upload'
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-brand-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -258,7 +258,7 @@ const DataConnector: React.FC = () => {
                 onClick={() => setActiveTab('api')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'api'
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-brand-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -269,7 +269,7 @@ const DataConnector: React.FC = () => {
                 onClick={() => setActiveTab('sync')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'sync'
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-brand-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -316,7 +316,7 @@ const DataConnector: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleSync(source.id)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                          className="p-2 text-sapphire-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
                           title="동기화"
                         >
                           <RefreshCw className="w-4 h-4" />
@@ -342,12 +342,12 @@ const DataConnector: React.FC = () => {
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
                     CSV 파일 업로드
                   </h3>
-                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center hover:border-purple-500 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center hover:border-brand-500 transition-colors">
                     <FileSpreadsheet className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 dark:text-gray-400 mb-4">
                       CSV 파일을 드래그하거나 클릭하여 업로드하세요
                     </p>
-                    <label className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg cursor-pointer hover:bg-purple-700 transition-colors">
+                    <label className="inline-block px-6 py-3 bg-brand-600 text-white rounded-lg cursor-pointer hover:bg-brand-700 transition-colors">
                       {uploading ? (
                         <>
                           <Loader2 className="w-4 h-4 inline mr-2 animate-spin" />
@@ -374,12 +374,12 @@ const DataConnector: React.FC = () => {
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
                     JSON 파일 업로드
                   </h3>
-                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center hover:border-purple-500 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center hover:border-brand-500 transition-colors">
                     <FileJson className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 dark:text-gray-400 mb-4">
                       JSON 파일을 드래그하거나 클릭하여 업로드하세요
                     </p>
-                    <label className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg cursor-pointer hover:bg-purple-700 transition-colors">
+                    <label className="inline-block px-6 py-3 bg-brand-600 text-white rounded-lg cursor-pointer hover:bg-brand-700 transition-colors">
                       {uploading ? (
                         <>
                           <Loader2 className="w-4 h-4 inline mr-2 animate-spin" />
@@ -499,7 +499,7 @@ const DataConnector: React.FC = () => {
                 <button
                   onClick={handleAPIConnect}
                   disabled={uploading || !apiConfig.url}
-                  className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {uploading ? (
                     <>
@@ -521,7 +521,7 @@ const DataConnector: React.FC = () => {
               <div className="space-y-6">
                 <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
                   <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+                    <AlertCircle className="w-5 h-5 text-sapphire-600 dark:text-sapphire-400 mt-0.5" />
                     <div>
                       <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
                         자동 동기화 설정
@@ -552,7 +552,7 @@ const DataConnector: React.FC = () => {
                         </div>
                         <button
                           onClick={() => handleSync(source.id)}
-                          className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+                          className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 flex items-center gap-2"
                         >
                           <RefreshCw className="w-4 h-4" />
                           동기화
@@ -585,7 +585,7 @@ const DataConnector: React.FC = () => {
             </div>
             <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
               <div
-                className="bg-purple-600 h-2 rounded-full transition-all"
+                className="bg-brand-600 h-2 rounded-full transition-all"
                 style={{
                   width: `${Math.min(
                     100,

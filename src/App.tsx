@@ -40,9 +40,9 @@ const DataConnector = lazy(() => import('@/features/settings/DataConnector'));
 // 로딩 Fallback 컴포넌트
 function LoadingFallback() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
       <div className="text-center">
-        <Loader2 className="w-12 h-12 text-purple-600 animate-spin mx-auto mb-4" />
+        <Loader2 className="w-12 h-12 text-brand-600 animate-spin mx-auto mb-4" />
         <p className="text-gray-600 dark:text-gray-400">로딩 중...</p>
       </div>
     </div>
@@ -157,9 +157,9 @@ function AppContent() {
 
   const getTierBadge = (tier: string) => {
     const badges = {
-      free: { label: '무료', color: 'bg-gray-500' },
+      free: { label: '무료', color: 'bg-neutral-500' },
       premium: { label: '프리미엄', color: 'bg-yellow-500' },
-      enterprise: { label: '엔터프라이즈', color: 'bg-purple-500' },
+      enterprise: { label: '엔터프라이즈', color: 'bg-brand-500' },
     };
     return badges[tier as keyof typeof badges] || badges.free;
   };
@@ -193,17 +193,17 @@ function AppContent() {
   const isFullPageView = ['landing', 'terms', 'privacy', 'faq', 'contact', 'checkout', 'settings', 'team', 'scheduler', 'api-docs', 'admin', 'activity', 'data', 'webhooks', 'report-builder', 'templates', 'data-connector'].includes(activeSection);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
       {/* 헤더 - 랜딩 페이지가 아닐 때만 표시 */}
       {!isLandingPage && !isFullPageView && (
-        <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <header className="bg-white dark:bg-neutral-800 shadow-md sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <button
                 onClick={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')}
                 className="flex items-center gap-3 cursor-pointer"
               >
-                <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-xl font-bold">DM</span>
                 </div>
                 <div>
@@ -220,7 +220,7 @@ function AppContent() {
                 {/* 전역 검색 버튼 */}
                 <button
                   onClick={() => setShowGlobalSearch(true)}
-                  className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                  className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-gray-600 transition-colors"
                   title="검색 (Cmd+K)"
                 >
                   <Search className="w-5 h-5 text-gray-700 dark:text-gray-300" />
@@ -230,7 +230,7 @@ function AppContent() {
                 {isAuthenticated && (
                   <button
                     onClick={() => setShowNotifications(!showNotifications)}
-                    className="relative p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    className="relative p-2 rounded-lg bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-gray-600 transition-colors"
                     title="알림"
                   >
                     <Bell className="w-5 h-5 text-gray-700 dark:text-gray-300" />
@@ -246,7 +246,7 @@ function AppContent() {
                 {isAuthenticated && (
                   <button
                     onClick={handleExportPDF}
-                    className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                    className="hidden md:flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
                   >
                     <Download className="w-4 h-4" />
                     <span>PDF 내보내기</span>
@@ -258,7 +258,7 @@ function AppContent() {
                   <div className="relative">
                     <button
                       onClick={() => setShowUserMenu(!showUserMenu)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-gray-600 transition-colors"
                     >
                       <User className="w-5 h-5" />
                       <span className="hidden md:inline text-sm font-semibold">{user.name}</span>
@@ -268,7 +268,7 @@ function AppContent() {
                     </button>
 
                     {showUserMenu && (
-                      <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+                      <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50">
                         <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                           <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
                           <p className="text-xs text-gray-600 dark:text-gray-400">{user.email}</p>
@@ -278,7 +278,7 @@ function AppContent() {
                             setActiveSection('settings');
                             setShowUserMenu(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                         >
                           <Settings className="w-4 h-4" />
                           <span>설정</span>
@@ -289,7 +289,7 @@ function AppContent() {
                               setActiveSection('team');
                               setShowUserMenu(false);
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                            className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                           >
                             <Users className="w-4 h-4" />
                             <span>팀 관리</span>
@@ -301,7 +301,7 @@ function AppContent() {
                               setActiveSection('scheduler');
                               setShowUserMenu(false);
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                            className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                           >
                             <Calendar className="w-4 h-4" />
                             <span>리포트 스케줄링</span>
@@ -313,7 +313,7 @@ function AppContent() {
                               setActiveSection('report-builder');
                               setShowUserMenu(false);
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                            className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                           >
                             <LayoutGrid className="w-4 h-4" />
                             <span>리포트 빌더</span>
@@ -324,7 +324,7 @@ function AppContent() {
                             setActiveSection('data');
                             setShowUserMenu(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700"
+                          className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700"
                         >
                           <Database className="w-4 h-4" />
                           <span>데이터 관리</span>
@@ -334,7 +334,7 @@ function AppContent() {
                             setActiveSection('data-connector');
                             setShowUserMenu(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                         >
                           <LinkIcon className="w-4 h-4" />
                           <span>데이터 커넥터</span>
@@ -345,7 +345,7 @@ function AppContent() {
                               setActiveSection('activity');
                               setShowUserMenu(false);
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                            className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                           >
                             <ActivityIcon className="w-4 h-4" />
                             <span>활동 로그</span>
@@ -357,7 +357,7 @@ function AppContent() {
                               setActiveSection('webhooks');
                               setShowUserMenu(false);
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                            className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                           >
                             <Webhook className="w-4 h-4" />
                             <span>Webhook 설정</span>
@@ -368,7 +368,7 @@ function AppContent() {
                             setActiveSection('api-docs');
                             setShowUserMenu(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                         >
                           <Code className="w-4 h-4" />
                           <span>API 문서</span>
@@ -379,7 +379,7 @@ function AppContent() {
                               setActiveSection('admin');
                               setShowUserMenu(false);
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-purple-600 border-t border-gray-200 dark:border-gray-700"
+                            className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-brand-600 border-t border-gray-200 dark:border-gray-700"
                           >
                             <Shield className="w-4 h-4" />
                             <span>관리자 대시보드</span>
@@ -390,7 +390,7 @@ function AppContent() {
                             setShowPricingModal(true);
                             setShowUserMenu(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                          className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-gray-700 dark:text-gray-300"
                         >
                           <Crown className="w-4 h-4 text-yellow-500" />
                           <span>요금제 관리</span>
@@ -401,7 +401,7 @@ function AppContent() {
                             setShowUserMenu(false);
                             setActiveSection('landing');
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 text-red-600 border-t border-gray-200 dark:border-gray-700 mt-1 pt-2"
+                          className="w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-gray-700 flex items-center gap-2 text-red-600 border-t border-gray-200 dark:border-gray-700 mt-1 pt-2"
                         >
                           <LogOut className="w-4 h-4" />
                           <span>로그아웃</span>
@@ -412,7 +412,7 @@ function AppContent() {
                 ) : (
                   <button
                     onClick={() => setShowAuthModal(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
                   >
                     <LogIn className="w-4 h-4" />
                     <span className="hidden md:inline">로그인</span>
@@ -422,7 +422,7 @@ function AppContent() {
                 {/* 다크모드 토글 */}
                 <button
                   onClick={toggleDarkMode}
-                  className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                  className="p-2 rounded-lg bg-neutral-200 dark:bg-neutral-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
                   aria-label="다크모드 토글"
                 >
                   {darkMode ? (
@@ -435,7 +435,7 @@ function AppContent() {
                 {/* 모바일 메뉴 토글 */}
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+                  className="md:hidden p-2 rounded-lg bg-neutral-200 dark:bg-neutral-700"
                   aria-label="메뉴 토글"
                 >
                   {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -453,8 +453,8 @@ function AppContent() {
                     onClick={() => setActiveSection(item.id)}
                     className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
                       activeSection === item.id
-                        ? 'bg-purple-600 text-white'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'bg-brand-600 text-white'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-neutral-100 dark:hover:bg-gray-700'
                     }`}
                   >
                     <span className="mr-2">{item.icon}</span>
@@ -477,8 +477,8 @@ function AppContent() {
                       }}
                       className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${
                         activeSection === item.id
-                          ? 'bg-purple-600 text-white'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          ? 'bg-brand-600 text-white'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-neutral-100 dark:hover:bg-gray-700'
                       }`}
                     >
                       <span className="mr-2">{item.icon}</span>
@@ -493,21 +493,21 @@ function AppContent() {
 
       {/* 간단한 헤더 - full page 뷰용 */}
       {isFullPageView && !isLandingPage && (
-        <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <header className="bg-white dark:bg-neutral-800 shadow-md sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex justify-between items-center">
               <button
                 onClick={() => setActiveSection(isAuthenticated ? 'dashboard' : 'landing')}
                 className="flex items-center gap-3"
               >
-                <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-xl font-bold">DM</span>
                 </div>
                 <span className="text-xl font-bold text-gray-900 dark:text-white">Dashboard Market Hub</span>
               </button>
               <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                className="p-2 rounded-lg bg-neutral-200 dark:bg-neutral-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
               >
                 {darkMode ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-gray-700" />}
               </button>
@@ -584,12 +584,12 @@ function AppContent() {
 
       {/* 푸터 - full page가 아닐 때만 표시 */}
       {!isFullPageView && (
-        <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
+        <footer className="bg-white dark:bg-neutral-800 border-t border-gray-200 dark:border-gray-700 mt-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid md:grid-cols-4 gap-8 mb-8">
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
                     <span className="text-white text-xl font-bold">DM</span>
                   </div>
                   <span className="text-lg font-bold text-gray-900 dark:text-white">Dashboard Market Hub</span>
@@ -597,7 +597,7 @@ function AppContent() {
                 <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                   BI 대시보드 시장을 분석하고 비교하는 가장 강력한 플랫폼. 데이터 기반 의사결정을 지원합니다.
                 </p>
-                <p className="text-gray-500 dark:text-gray-500 text-xs">
+                <p className="bg-neutral-500 dark:bg-neutral-500 text-xs">
                   © 2024 Dashboard Market Hub. All rights reserved.
                 </p>
               </div>
@@ -607,7 +607,7 @@ function AppContent() {
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                   {appMenuItems.slice(0, 4).map(item => (
                     <li key={item.id}>
-                      <button onClick={() => setActiveSection(item.id)} className="hover:text-purple-600 transition-colors">
+                      <button onClick={() => setActiveSection(item.id)} className="hover:text-brand-600 transition-colors">
                         {item.label}
                       </button>
                     </li>
@@ -620,7 +620,7 @@ function AppContent() {
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                   {footerMenuItems.map(item => (
                     <li key={item.id}>
-                      <button onClick={() => setActiveSection(item.id)} className="hover:text-purple-600 transition-colors flex items-center gap-2">
+                      <button onClick={() => setActiveSection(item.id)} className="hover:text-brand-600 transition-colors flex items-center gap-2">
                         {typeof item.icon === 'string' ? item.icon : item.icon}
                         {item.label}
                       </button>

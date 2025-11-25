@@ -114,7 +114,7 @@ const WidgetConfigPanel: React.FC<WidgetConfigPanelProps> = ({
                   type="checkbox"
                   checked={widget.config.trend}
                   onChange={(e) => updateConfig({ trend: e.target.checked })}
-                  className="rounded text-purple-600"
+                  className="rounded text-brand-600"
                 />
                 <span className="text-sm text-gray-700 dark:text-gray-300">트렌드 표시</span>
               </label>

@@ -122,8 +122,8 @@ const FAQPage: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
-              <HelpCircle className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+            <div className="w-16 h-16 bg-brand-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+              <HelpCircle className="w-8 h-8 text-brand-600 dark:text-brand-400" />
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -143,7 +143,7 @@ const FAQPage: React.FC = () => {
               placeholder="질문을 검색하세요..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-900 dark:text-white"
+              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 dark:text-white"
             />
           </div>
         </div>
@@ -171,7 +171,7 @@ const FAQPage: React.FC = () => {
                           {item.q}
                         </span>
                         {openIndex === currentIndex ? (
-                          <ChevronUp className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                          <ChevronUp className="w-5 h-5 text-brand-600 flex-shrink-0" />
                         ) : (
                           <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
                         )}
@@ -204,7 +204,7 @@ const FAQPage: React.FC = () => {
         )}
 
         {/* Contact CTA */}
-        <div className="mt-12 bg-purple-50 dark:bg-purple-900/20 rounded-lg p-8 text-center">
+        <div className="mt-12 bg-brand-50 dark:bg-purple-900/20 rounded-lg p-8 text-center">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
             찾으시는 답변이 없나요?
           </h3>
@@ -213,7 +213,7 @@ const FAQPage: React.FC = () => {
           </p>
           <a
             href="#contact"
-            className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+            className="inline-block px-6 py-3 bg-brand-600 text-white rounded-lg font-semibold hover:bg-brand-700 transition-colors"
           >
             문의하기
           </a>

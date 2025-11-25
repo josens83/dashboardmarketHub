@@ -30,10 +30,10 @@ const WidgetLibraryModal: React.FC<WidgetLibraryModalProps> = ({
             <button
               key={widget.type}
               onClick={() => onAddWidget(widget.type)}
-              className="p-6 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 transition-colors text-left"
+              className="p-6 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 transition-colors text-left"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg text-purple-600">
+                <div className="p-2 bg-brand-100 dark:bg-purple-900 rounded-lg text-brand-600">
                   {widget.icon}
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">{widget.label}</h3>

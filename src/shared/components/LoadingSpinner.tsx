@@ -19,7 +19,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 
   const spinner = (
     <div className="flex flex-col items-center gap-3">
-      <div className={`${sizeClasses[size]} border-purple-600 border-t-transparent rounded-full animate-spin`} />
+      <div className={`${sizeClasses[size]} border-brand-600 border-t-transparent rounded-full animate-spin`} />
       {message && (
         <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
           {message}

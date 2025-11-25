@@ -241,7 +241,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2">
-          <Filter className="w-5 h-5 text-purple-600" />
+          <Filter className="w-5 h-5 text-brand-600" />
           <h3 className="font-semibold text-gray-900 dark:text-white">고급 필터</h3>
         </div>
         <div className="flex items-center gap-2">
@@ -380,7 +380,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
               {/* Add Condition Button */}
               <button
                 onClick={() => addCondition(group.id)}
-                className="w-full px-3 py-2 text-sm text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 rounded-lg border-2 border-dashed border-purple-300 dark:border-purple-700 flex items-center justify-center gap-2"
+                className="w-full px-3 py-2 text-sm text-brand-600 hover:bg-brand-50 dark:hover:bg-purple-900 rounded-lg border-2 border-dashed border-brand-300 dark:border-brand-700 flex items-center justify-center gap-2"
               >
                 <Plus className="w-4 h-4" />
                 조건 추가
@@ -420,7 +420,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
         </button>
         <button
           onClick={handleApply}
-          className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+          className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 flex items-center gap-2"
         >
           <Check className="w-4 h-4" />
           필터 적용
@@ -457,7 +457,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
               <button
                 onClick={handleSavePreset}
                 disabled={!presetName}
-                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 저장
               </button>

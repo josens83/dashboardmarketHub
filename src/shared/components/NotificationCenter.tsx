@@ -90,7 +90,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
       case 'warning':
         return <AlertCircle className="w-5 h-5 text-yellow-600" />;
       case 'update':
-        return <TrendingUp className="w-5 h-5 text-blue-600" />;
+        return <TrendingUp className="w-5 h-5 text-sapphire-600" />;
       default:
         return <Info className="w-5 h-5 text-gray-600" />;
     }
@@ -150,7 +150,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
             <Bell className="w-5 h-5 text-gray-700 dark:text-gray-300" />
             <h3 className="font-semibold text-gray-900 dark:text-white">알림</h3>
             {unreadCount > 0 && (
-              <span className="px-2 py-0.5 text-xs font-semibold bg-purple-600 text-white rounded-full">
+              <span className="px-2 py-0.5 text-xs font-semibold bg-brand-600 text-white rounded-full">
                 {unreadCount}
               </span>
             )}
@@ -170,7 +170,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
               onClick={() => setFilter('all')}
               className={`px-3 py-1 text-sm font-medium rounded-lg transition-colors ${
                 filter === 'all'
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-brand-600 text-white'
                   : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
               }`}
             >
@@ -180,7 +180,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
               onClick={() => setFilter('unread')}
               className={`px-3 py-1 text-sm font-medium rounded-lg transition-colors ${
                 filter === 'unread'
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-brand-600 text-white'
                   : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
               }`}
             >
@@ -190,7 +190,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
           {unreadCount > 0 && (
             <button
               onClick={markAllAsRead}
-              className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium"
+              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium"
             >
               모두 읽음
             </button>
@@ -205,7 +205,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
                 <div
                   key={notification.id}
                   className={`group relative p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors ${
-                    !notification.read ? 'bg-purple-50/30 dark:bg-purple-900/10' : ''
+                    !notification.read ? 'bg-brand-50/30 dark:bg-purple-900/10' : ''
                   }`}
                 >
                   <button
@@ -226,7 +226,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
                             {notification.title}
                           </h4>
                           {!notification.read && (
-                            <div className="flex-shrink-0 w-2 h-2 bg-purple-600 rounded-full mt-1.5" />
+                            <div className="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-1.5" />
                           )}
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
@@ -282,7 +282,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
 
         {/* Footer */}
         {user?.subscriptionTier === 'free' && (
-          <div className="border-t border-gray-200 dark:border-gray-700 p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
+          <div className="border-t border-gray-200 dark:border-gray-700 p-4 bg-gradient-to-r from-brand-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
               <strong>프리미엄으로 업그레이드</strong>하고 맞춤형 알림을 받아보세요
             </p>
@@ -291,7 +291,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, onClose
                 onNavigate?.('plans');
                 onClose();
               }}
-              className="w-full py-2 bg-purple-600 text-white text-sm font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+              className="w-full py-2 bg-brand-600 text-white text-sm font-semibold rounded-lg hover:bg-brand-700 transition-colors"
             >
               플랜 보기
             </button>

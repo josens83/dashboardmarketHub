@@ -38,8 +38,8 @@ const WidgetCard: React.FC<WidgetCardProps> = ({
       onClick={onSelect}
       className={`bg-white dark:bg-gray-800 rounded-lg border-2 transition-all cursor-pointer ${
         isSelected
-          ? 'border-purple-600 shadow-lg'
-          : 'border-gray-200 dark:border-gray-700 hover:border-purple-300'
+          ? 'border-brand-600 shadow-lg'
+          : 'border-gray-200 dark:border-gray-700 hover:border-brand-300'
       }`}
       style={{
         gridColumn: `span ${widget.position.w}`,
@@ -84,9 +84,9 @@ const WidgetCard: React.FC<WidgetCardProps> = ({
       <div className="p-4">
         {widget.type === 'chart' && (
           <div className="h-48 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded">
-            {widget.config.chartType === 'bar' && <BarChart3 className="w-16 h-16 text-purple-400" />}
-            {widget.config.chartType === 'line' && <LineChart className="w-16 h-16 text-purple-400" />}
-            {widget.config.chartType === 'pie' && <PieChart className="w-16 h-16 text-purple-400" />}
+            {widget.config.chartType === 'bar' && <BarChart3 className="w-16 h-16 text-brand-400" />}
+            {widget.config.chartType === 'line' && <LineChart className="w-16 h-16 text-brand-400" />}
+            {widget.config.chartType === 'pie' && <PieChart className="w-16 h-16 text-brand-400" />}
             <div className="ml-4 text-gray-500 dark:text-gray-400">
               <p className="font-medium">{CHART_TYPES.find(c => c.value === widget.config.chartType)?.label}</p>
               <p className="text-sm">데이터 소스: {DATA_SOURCES.find(d => d.value === widget.config.dataSource)?.label}</p>
@@ -123,7 +123,7 @@ const WidgetCard: React.FC<WidgetCardProps> = ({
 
         {widget.type === 'metric' && (
           <div className="text-center py-8">
-            <div className="text-4xl font-bold text-purple-600 mb-2">1,234</div>
+            <div className="text-4xl font-bold text-brand-600 mb-2">1,234</div>
             <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
               {DATA_SOURCES.find(d => d.value === widget.config.dataSource)?.label}
             </div>

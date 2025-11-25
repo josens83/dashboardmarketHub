@@ -64,8 +64,8 @@ const UserDashboard: React.FC = () => {
       icon: <FileText className="w-6 h-6" />,
       label: '저장된 리포트',
       value: savedReports.length,
-      gradient: 'from-blue-500 to-cyan-500',
-      textColor: 'text-blue-600 dark:text-blue-400'
+      gradient: 'from-sapphire-500 to-cyan-500',
+      textColor: 'text-sapphire-600 dark:text-sapphire-400'
     },
     {
       icon: <BarChart3 className="w-6 h-6" />,
@@ -78,8 +78,8 @@ const UserDashboard: React.FC = () => {
       icon: <Eye className="w-6 h-6" />,
       label: '최근 활동',
       value: recentActivity.length,
-      gradient: 'from-purple-500 to-pink-500',
-      textColor: 'text-purple-600 dark:text-purple-400'
+      gradient: 'from-brand-500 to-pink-500',
+      textColor: 'text-brand-600 dark:text-brand-400'
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
@@ -94,12 +94,12 @@ const UserDashboard: React.FC = () => {
   return (
     <section className="space-y-8 animate-fade-in">
       {/* Welcome Header */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600/10 via-blue-600/10 to-pink-600/10 dark:from-purple-500/20 dark:via-blue-500/20 dark:to-pink-500/20 p-8 md:p-12">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600/10 via-sapphire-600/10 to-pink-600/10 dark:from-brand-500/20 dark:via-sapphire-500/20 dark:to-pink-500/20 p-8 md:p-12">
         <div className="absolute inset-0 bg-dot-pattern opacity-30" />
         <div className="relative">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 backdrop-blur-sm mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-sm font-medium text-purple-600 dark:text-purple-300">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 backdrop-blur-sm mb-4">
+            <Sparkles className="w-4 h-4 text-brand-400" />
+            <span className="text-sm font-medium text-brand-600 dark:text-brand-300">
               {user?.subscriptionTier === 'free' ? '무료 플랜' :
                user?.subscriptionTier === 'professional' ? '프리미엄 플랜' : '엔터프라이즈 플랜'}
             </span>
@@ -141,7 +141,7 @@ const UserDashboard: React.FC = () => {
         <div className="card">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <Clock className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              <Clock className="w-5 h-5 text-brand-600 dark:text-brand-400" />
               최근 활동
             </h3>
           </div>
@@ -164,8 +164,8 @@ const UserDashboard: React.FC = () => {
                     key={activity.id}
                     className="flex items-center gap-4 p-4 bg-gray-50/50 dark:bg-white/5 rounded-xl hover:bg-gray-100/50 dark:hover:bg-white/10 transition-all duration-200 border border-transparent hover:border-gray-200 dark:hover:border-white/10"
                   >
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
-                      <Icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                    <div className="p-2 rounded-lg bg-brand-100 dark:bg-purple-900/30">
+                      <Icon className="w-5 h-5 text-brand-600 dark:text-brand-400" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
@@ -186,11 +186,11 @@ const UserDashboard: React.FC = () => {
         <div className="card">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <FileText className="w-5 h-5 text-sapphire-600 dark:text-sapphire-400" />
               저장된 리포트
             </h3>
             {savedReports.length > 0 && (
-              <button className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline flex items-center gap-1">
+              <button className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1">
                 모두 보기
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -215,7 +215,7 @@ const UserDashboard: React.FC = () => {
                 >
                   <div className="flex items-start gap-4">
                     <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
-                      <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      <FileText className="w-5 h-5 text-sapphire-600 dark:text-sapphire-400" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
@@ -246,8 +246,8 @@ const UserDashboard: React.FC = () => {
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">빠른 액션</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { icon: BarChart3, label: '새 비교', gradient: 'from-purple-500 to-pink-500' },
-            { icon: Download, label: '데이터 내보내기', gradient: 'from-blue-500 to-cyan-500' },
+            { icon: BarChart3, label: '새 비교', gradient: 'from-brand-500 to-pink-500' },
+            { icon: Download, label: '데이터 내보내기', gradient: 'from-sapphire-500 to-cyan-500' },
             { icon: Eye, label: '시장 동향', gradient: 'from-emerald-500 to-teal-500' },
             { icon: FileText, label: '리포트 생성', gradient: 'from-amber-500 to-orange-500' },
           ].map((action, index) => (

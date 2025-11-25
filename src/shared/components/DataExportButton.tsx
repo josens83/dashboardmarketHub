@@ -89,7 +89,7 @@ const DataExportButton: React.FC<DataExportButtonProps> = ({
             onClick={handleExport}
             className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
           >
-            <FileSpreadsheet className="w-4 h-4 text-blue-600" />
+            <FileSpreadsheet className="w-4 h-4 text-sapphire-600" />
             <span>Excel로 내보내기</span>
           </button>
         </div>

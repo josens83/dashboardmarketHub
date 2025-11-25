@@ -33,9 +33,9 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
 
   const tierColors = {
     free: 'text-gray-600',
-    basic: 'text-blue-600',
+    basic: 'text-sapphire-600',
     professional: 'text-yellow-600',
-    enterprise: 'text-purple-600',
+    enterprise: 'text-brand-600',
   };
 
   return (
@@ -60,7 +60,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
               onClick={() => setBillingPeriod('monthly')}
               className={`px-6 py-2 rounded-md font-medium transition-all ${
                 billingPeriod === 'monthly'
-                  ? 'bg-white dark:bg-gray-800 text-purple-600 shadow-sm'
+                  ? 'bg-white dark:bg-gray-800 text-brand-600 shadow-sm'
                   : 'text-gray-600 dark:text-gray-400'
               }`}
             >
@@ -70,7 +70,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, onCheckout
               onClick={() => setBillingPeriod('yearly')}
               className={`px-6 py-2 rounded-md font-medium transition-all relative ${
                 billingPeriod === 'yearly'
-                  ? 'bg-white dark:bg-gray-800 text-purple-600 shadow-sm'
+                  ? 'bg-white dark:bg-gray-800 text-brand-600 shadow-sm'
                   : 'text-gray-600 dark:text-gray-400'
               }`}
             >

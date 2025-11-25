@@ -100,10 +100,10 @@ const IndustryAnalysis: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="w-5 h-5 text-blue-600" />
+              <TrendingUp className="w-5 h-5 text-sapphire-600" />
               <p className="text-sm text-gray-600 dark:text-gray-400">도입률</p>
             </div>
-            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            <p className="text-2xl font-bold text-sapphire-600 dark:text-sapphire-400">
               {currentIndustry.adoptionRate}%
             </p>
           </div>
@@ -118,12 +118,12 @@ const IndustryAnalysis: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+          <div className="p-4 bg-brand-50 dark:bg-purple-900/20 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
-              <Clock className="w-5 h-5 text-purple-600" />
+              <Clock className="w-5 h-5 text-brand-600" />
               <p className="text-sm text-gray-600 dark:text-gray-400">구축 기간</p>
             </div>
-            <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+            <p className="text-2xl font-bold text-brand-600 dark:text-brand-400">
               {currentIndustry.implementationTime}개월
             </p>
           </div>
@@ -206,7 +206,7 @@ const IndustryAnalysis: React.FC = () => {
                   )}
                   {caseStudy.costSavings && (
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      <p className="text-2xl font-bold text-sapphire-600 dark:text-sapphire-400">
                         {caseStudy.costSavings}%
                       </p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">비용 절감</p>

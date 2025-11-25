@@ -128,14 +128,14 @@ const CustomReportBuilder: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-          <LayoutGrid className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+          <LayoutGrid className="w-16 h-16 text-brand-600 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             커스텀 리포트 빌더는 Premium 이상 플랜에서 사용 가능합니다
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             나만의 리포트를 만들고 싶으신가요? 프리미엄 또는 엔터프라이즈 플랜으로 업그레이드하세요.
           </p>
-          <button className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-medium">
+          <button className="w-full bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-medium">
             플랜 업그레이드
           </button>
         </div>
@@ -152,7 +152,7 @@ const CustomReportBuilder: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <LayoutGrid className="w-8 h-8 text-purple-600" />
+              <LayoutGrid className="w-8 h-8 text-brand-600" />
               <input
                 type="text"
                 value={reportName}
@@ -191,7 +191,7 @@ const CustomReportBuilder: React.FC = () => {
               </button>
               <button
                 onClick={handleSaveReport}
-                className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
               >
                 <Save className="w-4 h-4" />
                 저장
@@ -216,7 +216,7 @@ const CustomReportBuilder: React.FC = () => {
                 </p>
                 <button
                   onClick={() => setShowWidgetLibrary(true)}
-                  className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 inline-flex items-center gap-2"
+                  className="bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 inline-flex items-center gap-2"
                 >
                   <Plus className="w-5 h-5" />
                   첫 위젯 추가
@@ -241,7 +241,7 @@ const CustomReportBuilder: React.FC = () => {
               {!isPreview && (
                 <button
                   onClick={() => setShowWidgetLibrary(true)}
-                  className="col-span-6 row-span-2 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg flex flex-col items-center justify-center gap-2 text-gray-600 dark:text-gray-400 hover:border-purple-400 hover:text-purple-600 transition-colors"
+                  className="col-span-6 row-span-2 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg flex flex-col items-center justify-center gap-2 text-gray-600 dark:text-gray-400 hover:border-brand-400 hover:text-brand-600 transition-colors"
                 >
                   <Plus className="w-8 h-8" />
                   <span className="font-medium">위젯 추가</span>

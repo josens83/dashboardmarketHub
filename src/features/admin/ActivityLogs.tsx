@@ -219,7 +219,7 @@ const ActivityLogs: React.FC = () => {
   const getCategoryBadge = (category: string) => {
     const colors = {
       auth: 'bg-blue-100 text-blue-800',
-      subscription: 'bg-purple-100 text-purple-800',
+      subscription: 'bg-brand-100 text-purple-800',
       data: 'bg-green-100 text-green-800',
       settings: 'bg-gray-100 text-gray-800',
       security: 'bg-red-100 text-red-800',
@@ -292,14 +292,14 @@ const ActivityLogs: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-          <Shield className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+          <Shield className="w-16 h-16 text-brand-600 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             활동 로그는 Premium 이상 플랜에서 사용 가능합니다
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             모든 활동을 추적하고 보안을 강화하려면 프리미엄 또는 엔터프라이즈 플랜으로 업그레이드하세요.
           </p>
-          <button className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-medium">
+          <button className="w-full bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-medium">
             플랜 업그레이드
           </button>
         </div>
@@ -315,7 +315,7 @@ const ActivityLogs: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                <Activity className="w-8 h-8 text-purple-600" />
+                <Activity className="w-8 h-8 text-brand-600" />
                 활동 로그
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -324,7 +324,7 @@ const ActivityLogs: React.FC = () => {
             </div>
             <button
               onClick={exportLogs}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
             >
               <Download className="w-4 h-4" />
               내보내기
@@ -484,14 +484,14 @@ const ActivityLogs: React.FC = () => {
 
         {/* Enterprise Audit Trail Notice */}
         {isEnterpriseUser && (
-          <div className="mt-6 bg-purple-50 dark:bg-purple-900 border border-purple-200 dark:border-purple-700 rounded-lg p-4">
+          <div className="mt-6 bg-brand-50 dark:bg-purple-900 border border-brand-200 dark:border-brand-700 rounded-lg p-4">
             <div className="flex items-start gap-3">
-              <Shield className="w-5 h-5 text-purple-600 mt-0.5" />
+              <Shield className="w-5 h-5 text-brand-600 mt-0.5" />
               <div>
-                <h4 className="font-medium text-purple-900 dark:text-purple-100">
+                <h4 className="font-medium text-purple-900 dark:text-brand-100">
                   Enterprise 감사 추적
                 </h4>
-                <p className="text-sm text-purple-700 dark:text-purple-300 mt-1">
+                <p className="text-sm text-brand-700 dark:text-brand-300 mt-1">
                   모든 활동 로그는 90일 동안 보관되며, 규정 준수를 위해 암호화되어 저장됩니다.
                   자세한 감사 리포트가 필요하신 경우 고객 지원팀에 문의하세요.
                 </p>

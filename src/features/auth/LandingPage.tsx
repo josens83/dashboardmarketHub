@@ -15,13 +15,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
       icon: <BarChart3 className="w-6 h-6" />,
       title: '실시간 시장 분석',
       description: 'BI 대시보드 시장의 최신 트렌드와 성장률을 실시간으로 확인하세요.',
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-brand-500 to-pink-500'
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
       title: '경쟁사 비교',
       description: 'Tableau, Power BI, Qlik 등 주요 서비스를 한눈에 비교하고 분석하세요.',
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-sapphire-500 to-cyan-500'
     },
     {
       icon: <Shield className="w-6 h-6" />,
@@ -66,7 +66,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a]">
+    <div className="min-h-screen bg-white dark:bg-neutral-950">
       {/* Hero Section - Linear 스타일 */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* 배경 그리드 패턴 */}
@@ -74,15 +74,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
 
         {/* 그러데이션 글로우 효과 */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-gradient-radial opacity-40 blur-3xl" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sapphire-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             {/* 배지 */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 backdrop-blur-sm mb-8 animate-fade-in">
-              <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-medium text-purple-300">프로덕션 런칭 완료</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 backdrop-blur-sm mb-8 animate-fade-in">
+              <Sparkles className="w-4 h-4 text-brand-400" />
+              <span className="text-sm font-medium text-brand-300">프로덕션 런칭 완료</span>
             </div>
 
             {/* 메인 헤드라인 */}
@@ -130,7 +130,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 mb-3">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 mb-3">
                     {stat.icon}
                   </div>
                   <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
@@ -177,7 +177,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
                 </p>
                 {index === 0 && (
                   <div className="mt-8 pt-8 border-t border-gray-200/50 dark:border-white/10">
-                    <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-semibold group-hover:gap-3 transition-all">
                       자세히 보기
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -190,7 +190,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
       </section>
 
       {/* Social Proof - Testimonials */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0a0a0a]">
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -216,7 +216,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
                   "{testimonial.content}"
                 </p>
                 <div className="flex items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-white/10">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
                     {testimonial.name[0]}
                   </div>
                   <div>
@@ -237,7 +237,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
       {/* CTA Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* 배경 효과 */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-blue-600/10 to-pink-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-600/10 via-sapphire-600/10 to-pink-600/10" />
         <div className="absolute inset-0 bg-dot-pattern opacity-30" />
 
         <div className="relative max-w-4xl mx-auto text-center">
