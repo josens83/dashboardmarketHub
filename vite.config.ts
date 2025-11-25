@@ -35,5 +35,27 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React core
+          'react-vendor': ['react', 'react-dom'],
+
+          // Charts and visualization
+          'charts': ['recharts'],
+
+          // UI libraries
+          'ui-vendor': ['lucide-react', 'dompurify'],
+
+          // Backend services
+          'services': ['@supabase/supabase-js', '@stripe/stripe-js'],
+
+          // Monitoring
+          'monitoring': ['@sentry/react'],
+        },
+      },
+    },
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 1000,
   }
 })

@@ -6,17 +6,19 @@ import { ToastProvider } from '@/shared/contexts/ToastContext';
 import { LoadingProvider } from '@/shared/contexts/LoadingContext';
 import { ErrorBoundary, GlobalSearch, NotificationCenter, OnboardingTour } from '@/shared/components';
 import { LandingPage, AuthModal } from '@/features/auth';
-import { MarketOverview, ServiceComparison, PricingAnalysis, IndustryAnalysis, UserDashboard } from '@/features/dashboard';
-
-
-
-
-
 import { PricingModal } from '@/features/subscription';
 import { exportToPDF } from '@/shared/utils/pdfExport';
 import { SubscriptionTier } from '@/shared/types/subscription';
 
 // 코드 스플리팅 - 성능 최적화를 위한 Lazy Loading
+// Dashboard components (lazy loaded for better performance)
+const MarketOverview = lazy(() => import('@/features/dashboard/MarketOverview'));
+const ServiceComparison = lazy(() => import('@/features/dashboard/ServiceComparison'));
+const PricingAnalysis = lazy(() => import('@/features/dashboard/PricingAnalysis'));
+const IndustryAnalysis = lazy(() => import('@/features/dashboard/IndustryAnalysis'));
+const UserDashboard = lazy(() => import('@/features/dashboard/UserDashboard'));
+
+// Reports and admin pages
 const SavedReportsPage = lazy(() => import('@/features/reports/SavedReportsPage'));
 const TeamManagement = lazy(() => import('@/features/settings/TeamManagement'));
 const ReportScheduler = lazy(() => import('@/features/reports/ReportScheduler'));
