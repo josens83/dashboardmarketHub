@@ -11,6 +11,11 @@ export { default as TextArea } from './TextArea';
 export { default as Select } from './Select';
 export { default as Checkbox } from './Checkbox';
 export { default as Radio } from './Radio';
+export { default as Tooltip } from './Tooltip';
+export { default as Badge } from './Badge';
+export { default as Skeleton } from './Skeleton';
+export { default as Modal } from './Modal';
+export { default as Drawer } from './Drawer';
 
 // Existing Components
 export { default as LoadingSpinner } from './LoadingSpinner';
