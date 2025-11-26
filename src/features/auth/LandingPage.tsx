@@ -1,6 +1,7 @@
 import React from 'react';
-import { BarChart3, TrendingUp, Shield, Zap, CheckCircle, Star, ArrowRight, Users, Clock, Award, Sparkles, Database } from 'lucide-react';
+import { BarChart3, TrendingUp, Shield, Zap, CheckCircle, Star, ArrowRight, Users, Clock, Award, Sparkles } from 'lucide-react';
 import { useAuth } from '@/shared/contexts/AuthContext';
+import { Button, Card } from '@/shared/components';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -15,7 +16,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
       icon: <BarChart3 className="w-6 h-6" />,
       title: '실시간 시장 분석',
       description: 'BI 대시보드 시장의 최신 트렌드와 성장률을 실시간으로 확인하세요.',
-      gradient: 'from-brand-500 to-pink-500'
+      gradient: 'from-brand-500 to-pink-500',
+      featured: true
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
@@ -67,61 +69,64 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      {/* Hero Section - Linear 스타일 */}
+      {/* Hero Section - Premium */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* 배경 그리드 패턴 */}
+        {/* Background patterns & effects */}
         <div className="absolute inset-0 bg-grid-pattern opacity-50" />
-
-        {/* 그러데이션 글로우 효과 */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-gradient-radial opacity-40 blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-gradient-radial-brand opacity-40 blur-3xl" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sapphire-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            {/* 배지 */}
+            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 backdrop-blur-sm mb-8 animate-fade-in">
               <Sparkles className="w-4 h-4 text-brand-400" />
-              <span className="text-sm font-medium text-brand-300">프로덕션 런칭 완료</span>
+              <span className="text-sm font-medium text-brand-300">96% Production Ready</span>
             </div>
 
-            {/* 메인 헤드라인 */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.1] tracking-tight animate-fade-in">
-              <span className="text-gray-900 dark:text-white">BI 대시보드 시장을</span>
+            {/* Main Headline */}
+            <h1 className="font-display text-5xl md:text-7xl lg:text-display-1 font-bold mb-6 leading-[1.1] tracking-tight animate-fade-in">
+              <span className="text-neutral-900 dark:text-white">BI 대시보드 시장을</span>
               <br />
-              <span className="text-gradient-purple">한눈에 파악하세요</span>
+              <span className="text-gradient-brand">한눈에 파악하세요</span>
             </h1>
 
-            {/* 서브헤드라인 */}
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            {/* Subheadline */}
+            <p className="text-body-lg md:text-body-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '0.1s' }}>
               Tableau, Power BI, Qlik 등 주요 BI 서비스를 비교하고 시장 트렌드를 분석하는 전문 플랫폼
             </p>
 
-            {/* CTA 버튼 */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               {user ? (
-                <button
+                <Button
+                  variant="primary"
+                  size="xl"
                   onClick={onGetStarted}
-                  className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
+                  icon={<ArrowRight className="w-5 h-5" />}
+                  iconPosition="right"
                 >
                   대시보드로 이동
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                </Button>
               ) : (
                 <>
-                  <button
+                  <Button
+                    variant="primary"
+                    size="xl"
                     onClick={onGetStarted}
-                    className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
+                    icon={<ArrowRight className="w-5 h-5" />}
+                    iconPosition="right"
                   >
                     무료로 시작하기
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="xl"
                     onClick={onViewPricing}
-                    className="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg"
                   >
                     요금제 보기
-                  </button>
+                  </Button>
                 </>
               )}
             </div>
@@ -133,26 +138,30 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 mb-3">
                     {stat.icon}
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                  <div className="font-display text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-neutral-600 dark:text-neutral-400">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* 하단 그러데이션 페이드 */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-[#0a0a0a] to-transparent" />
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent" />
       </section>
 
       {/* Features Section - Bento Grid */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8">
+      <section className="relative section-spacing-lg px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              강력한 기능으로 <span className="text-gradient-purple">완벽한 분석</span>
+            <h2 className="font-display text-h2 md:text-h1 font-bold text-neutral-900 dark:text-white mb-4">
+              강력한 기능으로 <span className="text-gradient-brand">완벽한 분석</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-body-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
               실시간 데이터 연동부터 AI 기반 인사이트까지, 모든 것을 한 곳에서
             </p>
           </div>
@@ -160,123 +169,137 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onViewPricing }
           {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {features.map((feature, index) => (
-              <div
+              <Card
                 key={index}
-                className={`glass-card p-8 hover:scale-[1.02] transition-all duration-300 group ${
+                variant="glass"
+                interactive
+                glowOnHover={index === 0}
+                className={`group ${
                   index === 0 ? 'md:col-span-2 lg:row-span-2' : ''
                 }`}
               >
                 <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} p-3 mb-6 text-white shadow-lg`}>
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="font-display text-h5 font-bold text-neutral-900 dark:text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   {feature.description}
                 </p>
-                {index === 0 && (
-                  <div className="mt-8 pt-8 border-t border-gray-200/50 dark:border-white/10">
+                {feature.featured && (
+                  <div className="mt-8 pt-8 border-t border-neutral-200/50 dark:border-white/10">
                     <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-semibold group-hover:gap-3 transition-all">
                       자세히 보기
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
                 )}
-              </div>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Social Proof - Testimonials */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-neutral-950">
+      <section className="relative section-spacing-lg px-4 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-neutral-900/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              고객들이 <span className="text-gradient-purple">말하는 성공 스토리</span>
+            <h2 className="font-display text-h2 md:text-h1 font-bold text-neutral-900 dark:text-white mb-4">
+              고객들이 <span className="text-gradient-brand">말하는 성공 스토리</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
+            <p className="text-body-lg text-neutral-600 dark:text-neutral-400">
               전 세계 10,000+ 기업이 신뢰하는 플랫폼
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div
+              <Card
                 key={index}
-                className="card p-8 hover:scale-[1.02] transition-all duration-300"
+                variant="premium"
+                interactive
+                className="h-full"
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                <p className="text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed">
                   "{testimonial.content}"
                 </p>
-                <div className="flex items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-white/10">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-sapphire-500 flex items-center justify-center text-white font-bold">
                     {testimonial.name[0]}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">
+                    <div className="font-semibold text-neutral-900 dark:text-white">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-neutral-600 dark:text-neutral-400">
                       {testimonial.role}
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* 배경 효과 */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-600/10 via-sapphire-600/10 to-pink-600/10" />
-        <div className="absolute inset-0 bg-dot-pattern opacity-30" />
+      {/* Final CTA */}
+      <section className="relative section-spacing-xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <Card variant="premium" className="text-center relative overflow-hidden">
+            {/* Background glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-500/10 to-sapphire-500/10 blur-3xl" />
 
-        <div className="relative max-w-4xl mx-auto text-center">
-          <div className="glass-card p-12 md:p-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              지금 바로 시작하세요
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              무료 플랜으로 시작하여 필요에 따라 언제든 업그레이드하세요
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={onGetStarted}
-                className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
-              >
-                <Sparkles className="w-5 h-5" />
-                무료로 시작하기
-              </button>
-              <button
-                onClick={onViewPricing}
-                className="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg"
-              >
-                <Database className="w-5 h-5" />
-                요금제 보기
-              </button>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-600 dark:text-gray-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" />
-                <span>신용카드 불필요</span>
+            <div className="relative">
+              <h2 className="font-display text-h2 md:text-h1 font-bold text-neutral-900 dark:text-white mb-4">
+                지금 바로 시작하세요
+              </h2>
+              <p className="text-body-lg text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
+                14일 무료 체험으로 모든 프리미엄 기능을 경험해보세요. 신용카드 등록 불필요.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={onGetStarted}
+                  icon={<ArrowRight className="w-5 h-5" />}
+                  iconPosition="right"
+                >
+                  무료로 시작하기
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  onClick={onViewPricing}
+                >
+                  요금제 자세히 보기
+                </Button>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" />
-                <span>언제든 취소 가능</span>
+
+              {/* Trust indicators */}
+              <div className="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+                <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-neutral-600 dark:text-neutral-400">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-success-600" />
+                    <span>신용카드 불필요</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-success-600" />
+                    <span>14일 무료 체험</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-success-600" />
+                    <span>언제든 취소 가능</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </section>
     </div>

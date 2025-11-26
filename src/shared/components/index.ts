@@ -3,6 +3,11 @@
  * 재사용 가능한 공통 UI 컴포넌트들을 export
  */
 
+// Premium UI Components
+export { default as Button } from './Button';
+export { default as Card } from './Card';
+
+// Existing Components
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as FeatureLock } from './FeatureLock';
